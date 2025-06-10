@@ -1,11 +1,11 @@
 "use client"
 
-import { useWallet } from "@/contexts/wallet-context"
+import { useTomoWallet } from "@/contexts/tomo-wallet-context"
 import { useFallbackWallet } from "@/contexts/fallback-wallet-context"
-import { Wallet, LogOut, AlertCircle, ExternalLink, Loader2, CheckCircle, Info } from "lucide-react"
+import { Wallet, LogOut, AlertCircle, ExternalLink, Loader2, CheckCircle, Info, AlertTriangle } from 'lucide-react'
 
 export function WalletConnect() {
-  const tomoWallet = useWallet()
+  const tomoWallet = useTomoWallet()
   const fallbackWallet = useFallbackWallet()
 
   // Use Tomo wallet if connected, otherwise use fallback
@@ -20,7 +20,7 @@ export function WalletConnect() {
 
     // Always try Tomo first
     try {
-      console.log("Attempting Tomo connection...")
+      console.log("Attempting Tomo EVM Kit connection...")
       await tomoWallet.connectWallet()
     } catch (error) {
       console.warn("Tomo connection failed, trying fallback:", error)
@@ -36,32 +36,59 @@ export function WalletConnect() {
 
   // Show connection status
   if (wallet.isConnected && wallet.address) {
+    const isTomoConnected = tomoWallet.isConnected
+    const showChainWarning = isTomoConnected && !tomoWallet.isCorrectChain
+
     return (
-      <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
-          <CheckCircle className="w-4 h-4 text-green-500" />
-          <span className="text-sm font-mono">{formatAddress(wallet.address)}</span>
-          <span className="text-xs text-muted-foreground px-2 py-1 bg-muted/50 rounded">
-            {tomoWallet.isConnected ? "Tomo" : "Web3"}
-          </span>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
+            <CheckCircle className="w-4 h-4 text-green-500" />
+            <span className="text-sm font-mono">{formatAddress(wallet.address)}</span>
+            <span className="text-xs text-muted-foreground px-2 py-1 bg-muted/50 rounded">
+              {isTomoConnected ? "Tomo" : "Web3"}
+            </span>
+          </div>
+          <a
+            href={`https://explorer.story.foundation/address/${wallet.address}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors p-2 hover:bg-muted/50 rounded"
+            title="View on Story Explorer"
+          >
+            <ExternalLink className="w-4 h-4" />
+          </a>
+          <button
+            onClick={wallet.disconnectWallet}
+            className="flex items-center gap-2 bg-secondary hover:bg-secondary/80 rounded-lg px-3 py-2 text-sm transition-colors"
+            title="Disconnect Wallet"
+          >
+            <LogOut className="w-4 h-4" />
+            Disconnect
+          </button>
         </div>
-        <a
-          href={`https://explorer.story.foundation/address/${wallet.address}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors p-2 hover:bg-muted/50 rounded"
-          title="View on Story Explorer"
-        >
-          <ExternalLink className="w-4 h-4" />
-        </a>
-        <button
-          onClick={wallet.disconnectWallet}
-          className="flex items-center gap-2 bg-secondary hover:bg-secondary/80 rounded-lg px-3 py-2 text-sm transition-colors"
-          title="Disconnect Wallet"
-        >
-          <LogOut className="w-4 h-4" />
-          Disconnect
-        </button>
+
+        {/* Chain warning for Tomo wallet */}
+        {showChainWarning && (
+          <div className="flex items-center gap-2 text-yellow-400 text-sm bg-yellow-500/10 border border-yellow-500/20 rounded-lg px-3 py-2">
+            <AlertTriangle className="w-4 h-4" />
+            <span className="text-xs">Wrong network. </span>
+            <button
+              onClick={tomoWallet.switchToStoryChain}
+              disabled={tomoWallet.isLoading}
+              className="text-xs underline hover:no-underline"
+            >
+              Switch to Story
+            </button>
+          </div>
+        )}
+
+        <div className="text-xs text-muted-foreground text-right">
+          <div>
+            {isTomoConnected ? "Tomo EVM Kit" : "MetaMask Fallback"} • Chain: {tomoWallet.chainId || "Unknown"}
+          </div>
+          <div>Story Protocol (Target: 1315)</div>
+        </div>
       </div>
     )
   }
@@ -97,7 +124,7 @@ export function WalletConnect() {
           </button>
         </div>
         <div className="text-xs text-muted-foreground text-right">
-          <div>Tomo SDK + MetaMask Fallback</div>
+          <div>Tomo EVM Kit + MetaMask Fallback</div>
           <div>Story Protocol (Chain ID: 1315)</div>
         </div>
       </div>
@@ -121,7 +148,7 @@ export function WalletConnect() {
         </button>
       </div>
       <div className="text-xs text-muted-foreground text-right">
-        <div>Tomo SDK + MetaMask Fallback</div>
+        <div>Tomo EVM Kit + MetaMask Fallback</div>
         <div>Story Protocol (Chain ID: 1315)</div>
       </div>
     </div>

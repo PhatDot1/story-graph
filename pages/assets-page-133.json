@@ -1,0 +1,2391 @@
+{
+  "page": 133,
+  "requestedAfter": "gqtDb2x1bW5OYW1lc5GoX19za2lwX1+mVmFsdWVzkc0zkA==",
+  "data": [
+    {
+      "id": "0x3b5b00b8f6D10E0881E4E4408f203F36389E14AC",
+      "ipId": "0x3b5b00b8f6D10E0881E4E4408f203F36389E14AC",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092446",
+      "blockTimestamp": "1746666972",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xf8a27d98436e84a71af887cf0fb1f1835875a62e5a6cb0e6083fabde74b80169",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x31287319f3ca80650cF073ad4473B0E473eDB67f",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x8aa173C53208090D2C55A15B3d7b128C4f41de15",
+      "ipId": "0x8aa173C53208090D2C55A15B3d7b128C4f41de15",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092441",
+      "blockTimestamp": "1746666961",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x8dd9b56b7374faa2537320f39add666b669b19ee3ebe7ae1e0169fd3be1ff7d3",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11431",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11431",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11431",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xF1E3Da783985991Cd3c28885fBE37b63C30E59E8",
+      "ipId": "0xF1E3Da783985991Cd3c28885fBE37b63C30E59E8",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092439",
+      "blockTimestamp": "1746666957",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x7032fe6d7604e16985bca77a83bdaf917cdee21a58f38575ba81cc27c389c240",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11430",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11430",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11430",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xCE675b24fe44150d3509eCE1cDA4E6C8f3be77eB",
+      "ipId": "0xCE675b24fe44150d3509eCE1cDA4E6C8f3be77eB",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092438",
+      "blockTimestamp": "1746666954",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x0bb78e5914b8306be992081329ffdf92e826212c86aa77e07a4e2eab91075eea",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x06171CA77480d363413c70b349f3A993137cbD6d",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x23Ba91E62B1575Af24Eb20E55632b7BBB8c734e5",
+      "ipId": "0x23Ba91E62B1575Af24Eb20E55632b7BBB8c734e5",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xA115D1109EB2670F490d1e0715b81D0bcB1ba3F0"
+      ],
+      "blockNumber": "4092424",
+      "blockTimestamp": "1746666924",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x7020f9aae81f8f96ae3a1bd8bbabdc0a072d3cd89411ead40d1008ab7243f036",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #3",
+        "chainId": "1315",
+        "tokenContract": "0x51A78698f98528f6001384EBe38d17a835FD5522",
+        "tokenId": "3",
+        "tokenUri": "test",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xd0712F21fd62AEf2f8f958D35d859433FA11D91D",
+      "ipId": "0xd0712F21fd62AEf2f8f958D35d859433FA11D91D",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092423",
+      "blockTimestamp": "1746666922",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xb15c82a332d3ceb5f3451120e245c7f580b50aa47ccddf66590ead2d4cf1140d",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11429",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11429",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11429",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xA4f8f6A86cfc0eb44D836BF59b542DA006f1DF17",
+      "ipId": "0xA4f8f6A86cfc0eb44D836BF59b542DA006f1DF17",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092423",
+      "blockTimestamp": "1746666922",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xb15c82a332d3ceb5f3451120e245c7f580b50aa47ccddf66590ead2d4cf1140d",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11427",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11427",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11427",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x5ab900AC81D41A8FeebeD4bFB5C1020E787519c9",
+      "ipId": "0x5ab900AC81D41A8FeebeD4bFB5C1020E787519c9",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092423",
+      "blockTimestamp": "1746666922",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x0d9a1de8a3d391264a0414725c424f2a34dfcd9394da0a92f210b0c660506d3f",
+      "nftMetadata": {
+        "name": "1315: test-collection #2",
+        "chainId": "1315",
+        "tokenContract": "0x2fe5a053D740839396Bc4E3c7784925fF4396F09",
+        "tokenId": "2",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x9A69017F3F85F3270bBe77FCf4C6B6Fd5d996751",
+      "ipId": "0x9A69017F3F85F3270bBe77FCf4C6B6Fd5d996751",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092423",
+      "blockTimestamp": "1746666922",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x0d9a1de8a3d391264a0414725c424f2a34dfcd9394da0a92f210b0c660506d3f",
+      "nftMetadata": {
+        "name": "1315: test-collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x2fe5a053D740839396Bc4E3c7784925fF4396F09",
+        "tokenId": "1",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xef5083016d6AB0f3d91aB63f36bfd70cF1c4eF9d",
+      "ipId": "0xef5083016d6AB0f3d91aB63f36bfd70cF1c4eF9d",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xA115D1109EB2670F490d1e0715b81D0bcB1ba3F0"
+      ],
+      "blockNumber": "4092420",
+      "blockTimestamp": "1746666916",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xce7b8bff4348ba0f7e0077ad7e78f15b698c29de791684706d6456db82ce0733",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11428",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11428",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11428",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x4B746aF7B029473D9Fa135fab42438ff1D92f005",
+      "ipId": "0x4B746aF7B029473D9Fa135fab42438ff1D92f005",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092407",
+      "blockTimestamp": "1746666888",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x7779ab55bcc189355f601d635679695c956e1e1d5cf74812d0729082831f6171",
+      "nftMetadata": {
+        "name": "1315: test-collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x6fcbD587B1280Dd5f49DeB1e530C0c2132E44032",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xCe9ccA23bd6681D1e3f7a5960D7053300f562121",
+      "ipId": "0xCe9ccA23bd6681D1e3f7a5960D7053300f562121",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092407",
+      "blockTimestamp": "1746666888",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x7779ab55bcc189355f601d635679695c956e1e1d5cf74812d0729082831f6171",
+      "nftMetadata": {
+        "name": "1315: test-collection #2",
+        "chainId": "1315",
+        "tokenContract": "0x6fcbD587B1280Dd5f49DeB1e530C0c2132E44032",
+        "tokenId": "2",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x8509865E4E659920c7c8ffbabDAeCFE5b6801b73",
+      "ipId": "0x8509865E4E659920c7c8ffbabDAeCFE5b6801b73",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092401",
+      "blockTimestamp": "1746666874",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xfe4341b0042828c6be9f609281c07653f15703860e2c49be2792764166b61aef",
+      "nftMetadata": {
+        "name": "1315: test-collection #2",
+        "chainId": "1315",
+        "tokenContract": "0x886627Dc900241725670f3a2c1a6e1c6Fe481233",
+        "tokenId": "2",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x2405eCd9a7552980F33320B25Ae972fb40ea012b",
+      "ipId": "0x2405eCd9a7552980F33320B25Ae972fb40ea012b",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092401",
+      "blockTimestamp": "1746666874",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xfe4341b0042828c6be9f609281c07653f15703860e2c49be2792764166b61aef",
+      "nftMetadata": {
+        "name": "1315: test-collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x886627Dc900241725670f3a2c1a6e1c6Fe481233",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x6af6094C5e93F7aa7542153F06007c4E83B47f66",
+      "ipId": "0x6af6094C5e93F7aa7542153F06007c4E83B47f66",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xA115D1109EB2670F490d1e0715b81D0bcB1ba3F0"
+      ],
+      "blockNumber": "4092398",
+      "blockTimestamp": "1746666868",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xa98b1c577b1490e1b3e86cdaacaac8ac7386b9171c53939ca7d40639f1cb8cf9",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #2",
+        "chainId": "1315",
+        "tokenContract": "0x51A78698f98528f6001384EBe38d17a835FD5522",
+        "tokenId": "2",
+        "tokenUri": "test",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xA115D1109EB2670F490d1e0715b81D0bcB1ba3F0",
+      "ipId": "0xA115D1109EB2670F490d1e0715b81D0bcB1ba3F0",
+      "descendantCount": 3,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092394",
+      "blockTimestamp": "1746666859",
+      "childrenCount": 3,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x389fbda831fad7006f7583bf24099e9550fff898b06d4c8d5280ff9e35457bd9",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x51A78698f98528f6001384EBe38d17a835FD5522",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x8b377b584FBcfD9cD90729510e5ebb435FdD237c",
+      "ipId": "0x8b377b584FBcfD9cD90729510e5ebb435FdD237c",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092392",
+      "blockTimestamp": "1746666855",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x96b5bf5b1c20f9cb80a6d3ec31b6bf8c30ac9adfdf87a2c49a94be52ac0d034c",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11425",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11425",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11425",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x1218692DB1153EbC4667D8D5141CCCfD343EDAc3",
+      "ipId": "0x1218692DB1153EbC4667D8D5141CCCfD343EDAc3",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092388",
+      "blockTimestamp": "1746666846",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x4d41849d96c7b935bf86503f17b96a03973a21a24e4bb4b593d8cd54112dbba5",
+      "nftMetadata": {
+        "name": "1315: test-collection #11",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "11",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xc6C2625Cbb39dD28592f92029bf6122cc818F56f",
+      "ipId": "0xc6C2625Cbb39dD28592f92029bf6122cc818F56f",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092388",
+      "blockTimestamp": "1746666846",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x45c26a6e09b6ddf9a27bc462183f47934055cb440e314c2c050ec19e2faea675",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11424",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11424",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11424",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x3Ff430B058578D2F51E283abEf7E7836cefCaE8F",
+      "ipId": "0x3Ff430B058578D2F51E283abEf7E7836cefCaE8F",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092387",
+      "blockTimestamp": "1746666844",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xcfcc4d6a2fb8229b016812dc30f6457b04dcd91a5fd451d02c9942da9baf6526",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11423",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11423",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11423",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xEA4999149b20ce460C68f01Cd32c27998e64042A",
+      "ipId": "0xEA4999149b20ce460C68f01Cd32c27998e64042A",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x577852be53c0Fe1d5F0522Ce8812F472eaEdF613"
+      ],
+      "blockNumber": "4092384",
+      "blockTimestamp": "1746666838",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x4efe2e275709d13cdbaffcab0a4776bc2510ebb1e26dc4a8089172976185f37f",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11422",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11422",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11422",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x2728BD5E8a427A09d25086c03041B2a239C9eC70",
+      "ipId": "0x2728BD5E8a427A09d25086c03041B2a239C9eC70",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xe99C59c7e79278f8C79FF34501b9fcc8F3B6645B"
+      ],
+      "blockNumber": "4092380",
+      "blockTimestamp": "1746666829",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x7300d517209b5f16336fbd1fe15f47f4916d1bbbeac4c82e272060cba0f86c7c",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xeCc49E51408ef6005b8f8039493Bca12389f38a1",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x4EBb4e3bFC6860D556aEF219A955779C59f5F0f8",
+      "ipId": "0x4EBb4e3bFC6860D556aEF219A955779C59f5F0f8",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092376",
+      "blockTimestamp": "1746666820",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xf28c9271f47dbe34445f5e2c6366fa406a2c11c2bf4068c376ee2b94d0f3959b",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11418",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11418",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11418",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xbAA374Eea29a2b337A584ec5532FDa62a3d054B2",
+      "ipId": "0xbAA374Eea29a2b337A584ec5532FDa62a3d054B2",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092372",
+      "blockTimestamp": "1746666812",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x4e7f1103fc9f23d25fcc1e4f3124ac5b7f0cc58c6c3cf3660663d8c221725846",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xaB9A0C8be0aBc28e66dBC8dd41B00b3dcB6386D1",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x8718Fb42aA839beEA3057Ef6817598382E6304F2",
+      "ipId": "0x8718Fb42aA839beEA3057Ef6817598382E6304F2",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092371",
+      "blockTimestamp": "1746666809",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xba67114a3b376471d3f420310da3e593eeb14b13ebd4fcfada960b567635d62c",
+      "nftMetadata": {
+        "name": "1315: test-collection #10",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "10",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xB3852e635171b8F8f4d9007100E8B25A05e5e03b",
+      "ipId": "0xB3852e635171b8F8f4d9007100E8B25A05e5e03b",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xe99C59c7e79278f8C79FF34501b9fcc8F3B6645B"
+      ],
+      "blockNumber": "4092364",
+      "blockTimestamp": "1746666794",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x38e3ef3b2f59cad16b3676aadb9737f486b87a62e26c45977fe289ee06433612",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xfFC130F56ACDA3Cd05C01fbf84fE326dd13e3C05",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x0FC119E9c4BEd1B20C40e329075781558fFAe8E9",
+      "ipId": "0x0FC119E9c4BEd1B20C40e329075781558fFAe8E9",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092362",
+      "blockTimestamp": "1746666790",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x9048ab24c7b98c4ca7647062dd3447f75153e0f7835699d35d057750808fd3a6",
+      "nftMetadata": {
+        "name": "1315: test-collection #9",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "9",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x9a55D40Bb014B27579366e26b467364fAf2486D4",
+      "ipId": "0x9a55D40Bb014B27579366e26b467364fAf2486D4",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x863000d939625f209C5EDd186dc2F87ACd050bDe"
+      ],
+      "blockNumber": "4092359",
+      "blockTimestamp": "1746666783",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x0cccdd2b3c222bb588073e4ac3b60cf9e5f66c26450675269d1871aa4ec0dbf5",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11416",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11416",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11416",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x15BbaB72a1438e59E2C9950Ce27Ce842f75afBdD",
+      "ipId": "0x15BbaB72a1438e59E2C9950Ce27Ce842f75afBdD",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092353",
+      "blockTimestamp": "1746666770",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xc4dfec70640160d2c1d1a741d98d8e0d96382e8e57679608b09fcd7d71c8204b",
+      "nftMetadata": {
+        "name": "1315: test-collection #8",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "8",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x2de225Adb8aB837A3da0843296a4A65208e98813",
+      "ipId": "0x2de225Adb8aB837A3da0843296a4A65208e98813",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092350",
+      "blockTimestamp": "1746666764",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x5bc53698fb48702e280b5253ca4a1c79f1682446ee5675086e0d69d4b03e365c",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x0397812d252E4D6991cCe78cb0380AeC7908e4Fb",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xcA10e618067316684Bc9Cd3837E75ADd788dd9F8",
+      "ipId": "0xcA10e618067316684Bc9Cd3837E75ADd788dd9F8",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092349",
+      "blockTimestamp": "1746666762",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x830cc3196c1ecd0886f6d8ef6c9f7213b4f8a2908c1633c47a10de2a60180d51",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11415",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11415",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11415",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x5BB2F60e4C7b5bb3bc34181533D5aB5626cd5b9C",
+      "ipId": "0x5BB2F60e4C7b5bb3bc34181533D5aB5626cd5b9C",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x577852be53c0Fe1d5F0522Ce8812F472eaEdF613"
+      ],
+      "blockNumber": "4092348",
+      "blockTimestamp": "1746666759",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xe07766461b7d1cfba5f10e1f86416127871ddcf3c9a0cb826c15571fd46a3eda",
+      "nftMetadata": {
+        "name": "1315: test-collection #7",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "7",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xAed1ac25AC50319Cd5b480938d1f0722A7e475c3",
+      "ipId": "0xAed1ac25AC50319Cd5b480938d1f0722A7e475c3",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092344",
+      "blockTimestamp": "1746666751",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xe3674f5d68c433e704c4b7c9e3e1fb2a477a9af93d5e0064ae848f70ee8aada8",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11414",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11414",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11414",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x21e7DA5cf3102f64C7DAE317E0Db3D3180F5501A",
+      "ipId": "0x21e7DA5cf3102f64C7DAE317E0Db3D3180F5501A",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xe99C59c7e79278f8C79FF34501b9fcc8F3B6645B"
+      ],
+      "blockNumber": "4092340",
+      "blockTimestamp": "1746666742",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xa6b2dd62c10457d9baa793139e3a7d51758ca2ef3a74c6f865e606baf68f2b0c",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xf717B0F7a974f461B526aC457f859ffE3D5C4D1a",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x47c580Bc6B476d7C370587E0cf812fd69637D6B4",
+      "ipId": "0x47c580Bc6B476d7C370587E0cf812fd69637D6B4",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092338",
+      "blockTimestamp": "1746666738",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xd309766748872f41da92ebe82a3910fab160c92612550dabba9faadcb34f1076",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11413",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11413",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11413",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x4062705B6d9176Fd14248AE54c4f15A602C09c63",
+      "ipId": "0x4062705B6d9176Fd14248AE54c4f15A602C09c63",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x577852be53c0Fe1d5F0522Ce8812F472eaEdF613"
+      ],
+      "blockNumber": "4092338",
+      "blockTimestamp": "1746666738",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x76eebfe53c15cd13e0849031c4a4f17e71587ee91886dc77b4c689ca507dac93",
+      "nftMetadata": {
+        "name": "1315: test-collection #6",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "6",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xafCBf726174Ee475A96A4b16763759B373b7d33b",
+      "ipId": "0xafCBf726174Ee475A96A4b16763759B373b7d33b",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092333",
+      "blockTimestamp": "1746666727",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xdbeffdebf1c7783c32a0c762ea6d7ee93c4be9251a1e7f391064f33bb4682475",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11412",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11412",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11412",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xe99C59c7e79278f8C79FF34501b9fcc8F3B6645B",
+      "ipId": "0xe99C59c7e79278f8C79FF34501b9fcc8F3B6645B",
+      "descendantCount": 3,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092332",
+      "blockTimestamp": "1746666725",
+      "childrenCount": 3,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x72e2819022fbe3295b1b37a927bbec45f2d97652eee27d2ab44fdc5b5ec978d4",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x3d0bB60C22ed1575F419a3f48282907a3ddff4F7",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x4305b8A59ae370b5C7f9fdA5bacaC33422Ca25d5",
+      "ipId": "0x4305b8A59ae370b5C7f9fdA5bacaC33422Ca25d5",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092326",
+      "blockTimestamp": "1746666712",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x6cf560626ecabdb8714c48e2e05437b3a6358e448d2ad18d06fb10baaf384466",
+      "nftMetadata": {
+        "name": "1315: test-collection #5",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "5",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x80Cdc66dd70c6359F90Cb764c03B2a22Af8a4e1C",
+      "ipId": "0x80Cdc66dd70c6359F90Cb764c03B2a22Af8a4e1C",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092326",
+      "blockTimestamp": "1746666712",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xd9e849d7ea6b7a454929ce960743a52eecf26d877eea30e5c161e2bb2dcfb1b7",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11411",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11411",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11411",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x81CF0e9428868d11D178Ea1F991D355e75027421",
+      "ipId": "0x81CF0e9428868d11D178Ea1F991D355e75027421",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3F9e97A80c5DEea80f8ecaD5ad41F93f2d267558"
+      ],
+      "blockNumber": "4092324",
+      "blockTimestamp": "1746666708",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x4da18dbc2d59dc8def37f187a7555361b8b0df4fadba0b48d3faed141b822d50",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #4",
+        "chainId": "1315",
+        "tokenContract": "0xcd8CA481DD0dceE048ce5d742F5f758FE2C8b491",
+        "tokenId": "4",
+        "tokenUri": "test",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x830eE266C657E3A95BF1ddA86492f4c294fc0110",
+      "ipId": "0x830eE266C657E3A95BF1ddA86492f4c294fc0110",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x577852be53c0Fe1d5F0522Ce8812F472eaEdF613"
+      ],
+      "blockNumber": "4092322",
+      "blockTimestamp": "1746666704",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x5c03c24f116e9e9ec71557ce167fa889f9c846ab1c71018b964a2de5eb0ef29e",
+      "nftMetadata": {
+        "name": "1315: test-collection #4",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "4",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x6609826184eda4BBE886569bf281804F439D101B",
+      "ipId": "0x6609826184eda4BBE886569bf281804F439D101B",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092319",
+      "blockTimestamp": "1746666697",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x2d0f17d48b419f4893baff257f6f5c55f6c7ed190ee2ad94bdd9b45418aa4f11",
+      "nftMetadata": {
+        "name": "1315: test-collection #3",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "3",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xc9b02c442A9A18F7A560C423fE86Aeb47f0d3ff8",
+      "ipId": "0xc9b02c442A9A18F7A560C423fE86Aeb47f0d3ff8",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3F9e97A80c5DEea80f8ecaD5ad41F93f2d267558"
+      ],
+      "blockNumber": "4092318",
+      "blockTimestamp": "1746666695",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x93e1d1ec926c22be589f93e2450a0acc18bdbfb3bda36a224950b51178ec7b1d",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11410",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11410",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11410",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x863000d939625f209C5EDd186dc2F87ACd050bDe",
+      "ipId": "0x863000d939625f209C5EDd186dc2F87ACd050bDe",
+      "descendantCount": 1,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092316",
+      "blockTimestamp": "1746666690",
+      "childrenCount": 1,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xbd690a139e3a2c272f9abfe4db00404e45f55fb0d7924d5b9a24da610b97e150",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11409",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11409",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11409",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x5E9E07Fd610BFea7ee8222E6E733E84944d797D4",
+      "ipId": "0x5E9E07Fd610BFea7ee8222E6E733E84944d797D4",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092312",
+      "blockTimestamp": "1746666682",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xa542be9c6823a25d2125da90f0e7f83e43275a660b12672f1d239b731968fcbf",
+      "nftMetadata": {
+        "name": "1315: test-collection #2",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "2",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x738f4F9d4060d950EDC286fFDB4b1fDf7d5408c8",
+      "ipId": "0x738f4F9d4060d950EDC286fFDB4b1fDf7d5408c8",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3F9e97A80c5DEea80f8ecaD5ad41F93f2d267558"
+      ],
+      "blockNumber": "4092311",
+      "blockTimestamp": "1746666680",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x761833ef4da271cb5fe08b99192e40ffddd5dd64fdd801f939576f1dd43c3c39",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11407",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11407",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11407",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xE78112cD0a63b4A0A74a271fDD85e975c0462eaF",
+      "ipId": "0xE78112cD0a63b4A0A74a271fDD85e975c0462eaF",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3F9e97A80c5DEea80f8ecaD5ad41F93f2d267558"
+      ],
+      "blockNumber": "4092305",
+      "blockTimestamp": "1746666667",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xc5b49f40096bae8f787eba89ca5b7016986ef07f6b6a20103e7917c2f6a3b7fa",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #3",
+        "chainId": "1315",
+        "tokenContract": "0xcd8CA481DD0dceE048ce5d742F5f758FE2C8b491",
+        "tokenId": "3",
+        "tokenUri": "test",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x577852be53c0Fe1d5F0522Ce8812F472eaEdF613",
+      "ipId": "0x577852be53c0Fe1d5F0522Ce8812F472eaEdF613",
+      "descendantCount": 8,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092304",
+      "blockTimestamp": "1746666665",
+      "childrenCount": 8,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x5345fcb51c9b06c0b2aab52c34edba74a9c5623c3402fb55ff478451a0000586",
+      "nftMetadata": {
+        "name": "1315: test-collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xbBfBB36FaF838AcC4511bf746413B5f4a50620ec",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x1Bf9d30F733A62d43C6C613131DEFD990D17a6fF",
+      "ipId": "0x1Bf9d30F733A62d43C6C613131DEFD990D17a6fF",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092298",
+      "blockTimestamp": "1746666651",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x08d50cecc20072a9ff03aa24d040624481822d8da25466f8061889194ff4afb1",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11406",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11406",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11406",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x4cfC5eFB4A88F5db1988B27B77cF47269665a892",
+      "ipId": "0x4cfC5eFB4A88F5db1988B27B77cF47269665a892",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092298",
+      "blockTimestamp": "1746666651",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x08d50cecc20072a9ff03aa24d040624481822d8da25466f8061889194ff4afb1",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11404",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11404",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11404",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xA62C3307951402a6102E46f5fd5014A9Bb0b883A",
+      "ipId": "0xA62C3307951402a6102E46f5fd5014A9Bb0b883A",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092298",
+      "blockTimestamp": "1746666651",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xc41c454cd32b6fae3ebf0541f4acebe65e0a13cb1d652f4082fb5052510265bc",
+      "nftMetadata": {
+        "name": "1315: test-collection #2",
+        "chainId": "1315",
+        "tokenContract": "0x17Df042aD19eC8b148DAc52cD7A8f8a4972081AD",
+        "tokenId": "2",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x1e0B1E0333B9e82E6ba53d936280d317dBB0F329",
+      "ipId": "0x1e0B1E0333B9e82E6ba53d936280d317dBB0F329",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092298",
+      "blockTimestamp": "1746666651",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xc41c454cd32b6fae3ebf0541f4acebe65e0a13cb1d652f4082fb5052510265bc",
+      "nftMetadata": {
+        "name": "1315: test-collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x17Df042aD19eC8b148DAc52cD7A8f8a4972081AD",
+        "tokenId": "1",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xd35952718730E7C60FbaCd0e7Db2E5B932e57297",
+      "ipId": "0xd35952718730E7C60FbaCd0e7Db2E5B932e57297",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092293",
+      "blockTimestamp": "1746666640",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x04824b26628681b9a37684179c656395279a467bb1828fcdc7c69cf50aae4497",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11405",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11405",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11405",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x359FF0286B2c743F7d7071804cf4c91742829Ae4",
+      "ipId": "0x359FF0286B2c743F7d7071804cf4c91742829Ae4",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3F9e97A80c5DEea80f8ecaD5ad41F93f2d267558"
+      ],
+      "blockNumber": "4092293",
+      "blockTimestamp": "1746666640",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x898fb5e52f067761b752cf882c0a87ee88e48bda1f3679df00442f0b0d351fe5",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #2",
+        "chainId": "1315",
+        "tokenContract": "0xcd8CA481DD0dceE048ce5d742F5f758FE2C8b491",
+        "tokenId": "2",
+        "tokenUri": "test",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x3F9e97A80c5DEea80f8ecaD5ad41F93f2d267558",
+      "ipId": "0x3F9e97A80c5DEea80f8ecaD5ad41F93f2d267558",
+      "descendantCount": 5,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092289",
+      "blockTimestamp": "1746666632",
+      "childrenCount": 5,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x66140d35d9e148e488d5ffa9cf8d99f6eb1281f05222fcc7d4d86561733f5f6e",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xcd8CA481DD0dceE048ce5d742F5f758FE2C8b491",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x1920DF4f51db806314254ed579c1A3e7739ACC31",
+      "ipId": "0x1920DF4f51db806314254ed579c1A3e7739ACC31",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xeFc2A86b5a7c4Ad5801278EF2bC6F022484c8738"
+      ],
+      "blockNumber": "4092287",
+      "blockTimestamp": "1746666628",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xd0cecce1a0b2ba9001169bf5e20701919118e8052b7cfeb02069ead8abf43c9c",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11403",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11403",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11403",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xa1743a598e7B21cE9644e122A90EA9186044446F",
+      "ipId": "0xa1743a598e7B21cE9644e122A90EA9186044446F",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3D5593edab50799F9F04BaFCDdDE54CED37419B3"
+      ],
+      "blockNumber": "4092286",
+      "blockTimestamp": "1746666625",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xf54951810df90f337984a485256f941ea49025cb7b411f1fe781727745a142b7",
+      "nftMetadata": {
+        "name": "1315: test-collection #2",
+        "chainId": "1315",
+        "tokenContract": "0xE7008143c517D93DA917702447D800934FaBDD3b",
+        "tokenId": "2",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x8E90282Ab4088F092caeAbA22072b98D7D44f1af",
+      "ipId": "0x8E90282Ab4088F092caeAbA22072b98D7D44f1af",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3D5593edab50799F9F04BaFCDdDE54CED37419B3"
+      ],
+      "blockNumber": "4092286",
+      "blockTimestamp": "1746666625",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xf54951810df90f337984a485256f941ea49025cb7b411f1fe781727745a142b7",
+      "nftMetadata": {
+        "name": "1315: test-collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xE7008143c517D93DA917702447D800934FaBDD3b",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x7cdcC6A1473A2C5394626ac09861fca1ea14c366",
+      "ipId": "0x7cdcC6A1473A2C5394626ac09861fca1ea14c366",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092282",
+      "blockTimestamp": "1746666617",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x8a3d69e5e48292e7261600520610bacfd6dbd1806fc42a6e14b07f7393484247",
+      "nftMetadata": {
+        "name": "1315: test-collection #11",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "11",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x21bd81818BbdED3De42B7a903327fCF305227e50",
+      "ipId": "0x21bd81818BbdED3De42B7a903327fCF305227e50",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092280",
+      "blockTimestamp": "1746666613",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xd2bda3ca341867d51788282b77b513df85ecee74bc207d9b240a2d9d0e67bd27",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11402",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11402",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11402",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x9ee53435Dc60446fDFc717411305c3bB2B59fcF6",
+      "ipId": "0x9ee53435Dc60446fDFc717411305c3bB2B59fcF6",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092280",
+      "blockTimestamp": "1746666613",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xbcf8c7df9eb5799ca97a5ccc6e4bc47b91880331b158b147766e30d4e3e35bcf",
+      "nftMetadata": {
+        "name": "1315: test-collection #2",
+        "chainId": "1315",
+        "tokenContract": "0x2C57c22f7c02d47a669f43952FB2a89e0c72B616",
+        "tokenId": "2",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x3017A5b950f5953Ebfd1889B46c8141a040c29a4",
+      "ipId": "0x3017A5b950f5953Ebfd1889B46c8141a040c29a4",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092280",
+      "blockTimestamp": "1746666613",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xbcf8c7df9eb5799ca97a5ccc6e4bc47b91880331b158b147766e30d4e3e35bcf",
+      "nftMetadata": {
+        "name": "1315: test-collection #1",
+        "chainId": "1315",
+        "tokenContract": "0x2C57c22f7c02d47a669f43952FB2a89e0c72B616",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xeFc2A86b5a7c4Ad5801278EF2bC6F022484c8738",
+      "ipId": "0xeFc2A86b5a7c4Ad5801278EF2bC6F022484c8738",
+      "descendantCount": 1,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092279",
+      "blockTimestamp": "1746666610",
+      "childrenCount": 1,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xbef1f5591b00fac631900be2e463417d3ee0a0a28004776f0a56f8b50677d149",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11401",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11401",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11401",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xe3eAbC9334111c5e7F40A50fBf09CA534cdE604E",
+      "ipId": "0xe3eAbC9334111c5e7F40A50fBf09CA534cdE604E",
+      "descendantCount": 1,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092275",
+      "blockTimestamp": "1746666602",
+      "childrenCount": 1,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x0cb30e770d190b08dc3b943b2a557203615fe4ca103e1ce5c9c0959ef4fbafe7",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11398",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11398",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11398",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xBff20C47ff80455b1aA1FcaC6924a4205eed5084",
+      "ipId": "0xBff20C47ff80455b1aA1FcaC6924a4205eed5084",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092268",
+      "blockTimestamp": "1746666586",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xa64ece0a5fdd4f150acddb486900204f6a0ff597b103f861bbe0e81c68a96acd",
+      "nftMetadata": {
+        "name": "1315: test-collection #10",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "10",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x5a94A196926C3E8d1c45c45390d7671f1588E3F4",
+      "ipId": "0x5a94A196926C3E8d1c45c45390d7671f1588E3F4",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3D5593edab50799F9F04BaFCDdDE54CED37419B3"
+      ],
+      "blockNumber": "4092266",
+      "blockTimestamp": "1746666582",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xb3321e1d31629dba9216643045ef0b187bbb51ea83cbc270f8c4a540e0655ba8",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11396",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11396",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11396",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xF6F0d183f7dF0AF7DBf2fb3f345CE5e67B4D249a",
+      "ipId": "0xF6F0d183f7dF0AF7DBf2fb3f345CE5e67B4D249a",
+      "descendantCount": 1,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092263",
+      "blockTimestamp": "1746666575",
+      "childrenCount": 1,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xaf0d43a36755b01d2b5b4d7ba6d39b1313406d4f72d411155395b614022a5e8a",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11395",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11395",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11395",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x6febe10bA7BD02a94b905D5134Fa109d926Ba021",
+      "ipId": "0x6febe10bA7BD02a94b905D5134Fa109d926Ba021",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092262",
+      "blockTimestamp": "1746666573",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x88d8d748e8d39d2257ea34f5964190662d25e86d1c57c362c107f759f0299360",
+      "nftMetadata": {
+        "name": "1315: test-collection #9",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "9",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x5A65B9ca8e5659cf6Bf4A905Fe9d4BD24CE45447",
+      "ipId": "0x5A65B9ca8e5659cf6Bf4A905Fe9d4BD24CE45447",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3D5593edab50799F9F04BaFCDdDE54CED37419B3"
+      ],
+      "blockNumber": "4092261",
+      "blockTimestamp": "1746666571",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xe06629b1fed9e8238f89ed9ceb604cb98b5b66044724378f7473354804a46664",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11394",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11394",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11394",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x88E31283123c58141ebd3520d3942982Fc1346cd",
+      "ipId": "0x88E31283123c58141ebd3520d3942982Fc1346cd",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092257",
+      "blockTimestamp": "1746666562",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x1b7b36287c6df9d99bad9969f0b0b9ac5ba3c65788c35594395f72a15df173a8",
+      "nftMetadata": {
+        "name": "1315: test-collection #8",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "8",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x19dcAa78D17c1f571686CDF18Febf47596676163",
+      "ipId": "0x19dcAa78D17c1f571686CDF18Febf47596676163",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092253",
+      "blockTimestamp": "1746666553",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x4b45e80cc2265f2d696c3b77e8d9a1a4134569ec2835da9803a1143916ec152e",
+      "nftMetadata": {
+        "name": "1315: Private Minting Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xc6A1AA98e03C200Aa2a33e7579f1eA4e6615Ec59",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xE485a187769A9FC603ee9944582629B9A18bD745",
+      "ipId": "0xE485a187769A9FC603ee9944582629B9A18bD745",
+      "descendantCount": 1,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092252",
+      "blockTimestamp": "1746666551",
+      "childrenCount": 1,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x092205c7c559722c8acbfed9621d921a1377b1219ee64749c0fab083cde56457",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11393",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11393",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11393",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x5eFD0A298231eD9F9C5Fb97c3c262bdC8A80e34F",
+      "ipId": "0x5eFD0A298231eD9F9C5Fb97c3c262bdC8A80e34F",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092249",
+      "blockTimestamp": "1746666545",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x0816cc7921a858826549e8b6ad2d829e270c0a20394ab67d417eedb3ab2825f7",
+      "nftMetadata": {
+        "name": "1315: test-collection #7",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "7",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x197a8e2d989F3A386Fd8961ABd65Eb5fc7c717Da",
+      "ipId": "0x197a8e2d989F3A386Fd8961ABd65Eb5fc7c717Da",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xF6F0d183f7dF0AF7DBf2fb3f345CE5e67B4D249a"
+      ],
+      "blockNumber": "4092243",
+      "blockTimestamp": "1746666532",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x58d7d752ee4df01a2ce2088154ec78703de9a3628ca73ccb6e14fd8006bf27c7",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11391",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11391",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11391",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xCea41746a2Ffa9aB194c9fcaa0bEA8316Ac044c1",
+      "ipId": "0xCea41746a2Ffa9aB194c9fcaa0bEA8316Ac044c1",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092241",
+      "blockTimestamp": "1746666528",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x69fa5a7040176227b946d3bf3e056a6c2e242b40a32ae1f5d9efc8e7b4b3dc7b",
+      "nftMetadata": {
+        "name": "1315: test-collection #6",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "6",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xd0B20494332EB028C420D6aC6B21775EeD87809d",
+      "ipId": "0xd0B20494332EB028C420D6aC6B21775EeD87809d",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xF461AC05b137aDcA251098f420adE6aFBBaFc483"
+      ],
+      "blockNumber": "4092239",
+      "blockTimestamp": "1746666523",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x543db9a15b34a2febceb98e011b7459a3aef6877bdb524fc4b5d628b64439780",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #4",
+        "chainId": "1315",
+        "tokenContract": "0xfe921f0f9a5292Ad7Ff39beFb3e484225248cc81",
+        "tokenId": "4",
+        "tokenUri": "test",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xc673bd043Ae0B8cA3df9A1AAF671e98bB1882733",
+      "ipId": "0xc673bd043Ae0B8cA3df9A1AAF671e98bB1882733",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092239",
+      "blockTimestamp": "1746666523",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xbe77dafd55d50172cd708ce53c1c35a2b071aba74c496c0ec76f80d369538a86",
+      "nftMetadata": {
+        "name": "1315: test-collection #5",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "5",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xA856Ec1C31b36dA655ba5051aaEEC05aA682EC64",
+      "ipId": "0xA856Ec1C31b36dA655ba5051aaEEC05aA682EC64",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xE485a187769A9FC603ee9944582629B9A18bD745"
+      ],
+      "blockNumber": "4092239",
+      "blockTimestamp": "1746666523",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x80c6ee953d79f23a6615b92e67721ffefcece992f4e350310cdcf17ba15ba957",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11390",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11390",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11390",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xfd402CAC1f47CEf58cC52B0618C26BdF192Cf7d6",
+      "ipId": "0xfd402CAC1f47CEf58cC52B0618C26BdF192Cf7d6",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092237",
+      "blockTimestamp": "1746666519",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x829bc7dbcb35bea0b06ec2e77df75ba63f9fc3dfe6f566e10933e0d6b4d76b74",
+      "nftMetadata": {
+        "name": "1315: test-collection #4",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "4",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xEEf65362105E2baF475Cf0D5d4f26873AAbBD12C",
+      "ipId": "0xEEf65362105E2baF475Cf0D5d4f26873AAbBD12C",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xF461AC05b137aDcA251098f420adE6aFBBaFc483"
+      ],
+      "blockNumber": "4092234",
+      "blockTimestamp": "1746666513",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xe2bbb5bfd9cd118d5c2ee1cc7d0638028e17ca6eda8b24fee982bb0c77457a5b",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11389",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11389",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11389",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x789413E9c7FE20544810c00C107680132583b48B",
+      "ipId": "0x789413E9c7FE20544810c00C107680132583b48B",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x2346cDd990144e52F3753F0A992c2F033181aefc"
+      ],
+      "blockNumber": "4092231",
+      "blockTimestamp": "1746666506",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xc4763b89183f53d597d9265afb61cdd85a7c8868d5d1e780c3d83612a13ae5bb",
+      "nftMetadata": {
+        "name": "1315: test-collection #3",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "3",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x09278b8c279FB44E59FB176FBe261071768911e7",
+      "ipId": "0x09278b8c279FB44E59FB176FBe261071768911e7",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xF461AC05b137aDcA251098f420adE6aFBBaFc483"
+      ],
+      "blockNumber": "4092228",
+      "blockTimestamp": "1746666499",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x6be92445d56ced50ea686f506ce2169b53251e9a857dd365760e7d30a66b62ac",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11388",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11388",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11388",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x9Fd296b9bE126B64Ca219eBE43390d1761eea72c",
+      "ipId": "0x9Fd296b9bE126B64Ca219eBE43390d1761eea72c",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092223",
+      "blockTimestamp": "1746666489",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x24ff2c9670657c2e1f36fc42029b5314dcdeb5e4344846a868448433746777cd",
+      "nftMetadata": {
+        "name": "1315: test-collection #2",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "2",
+        "tokenUri": "test-metadata",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xA4Af48bf42A318d1532EdDbb641180287917aE56",
+      "ipId": "0xA4Af48bf42A318d1532EdDbb641180287917aE56",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xF461AC05b137aDcA251098f420adE6aFBBaFc483"
+      ],
+      "blockNumber": "4092221",
+      "blockTimestamp": "1746666484",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xaa3fa94413d5a772a637a63618b0d89d21b1c754abe7b3699fbf31042e179848",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #3",
+        "chainId": "1315",
+        "tokenContract": "0xfe921f0f9a5292Ad7Ff39beFb3e484225248cc81",
+        "tokenId": "3",
+        "tokenUri": "test",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x3D5C10f6033735706C3A5b8A3F7820171446e4b4",
+      "ipId": "0x3D5C10f6033735706C3A5b8A3F7820171446e4b4",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092218",
+      "blockTimestamp": "1746666478",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x3b61e49e1572c859703ac44d2782822127da199b36f4a42cbbf63b7ccbd74396",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11387",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11387",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11387",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x2346cDd990144e52F3753F0A992c2F033181aefc",
+      "ipId": "0x2346cDd990144e52F3753F0A992c2F033181aefc",
+      "descendantCount": 9,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092218",
+      "blockTimestamp": "1746666478",
+      "childrenCount": 9,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xdae1ed533019a3c5f8f38c54d5a6e73b6aded5451ef322b457663564f88ea098",
+      "nftMetadata": {
+        "name": "1315: test-collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xb5C20eFb2f2E84Da7b4303c1bd5b970e14d20E54",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x1c30Ee1E54662AfCe78B784738931621983529Af",
+      "ipId": "0x1c30Ee1E54662AfCe78B784738931621983529Af",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xEAaFFaCb5CadAde3240859DebC7a8944E2e8A1B0"
+      ],
+      "blockNumber": "4092212",
+      "blockTimestamp": "1746666465",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xb4346239c706e46e60b146dd0d2303a583eb262126d63da2b25877194cb7c2ff",
+      "nftMetadata": {
+        "name": "1315: test-collection #12",
+        "chainId": "1315",
+        "tokenContract": "0x7f1f8fA07Aeb823E3bfd99406Ad78b6207d43cC7",
+        "tokenId": "12",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xEAaFFaCb5CadAde3240859DebC7a8944E2e8A1B0",
+      "ipId": "0xEAaFFaCb5CadAde3240859DebC7a8944E2e8A1B0",
+      "descendantCount": 1,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092208",
+      "blockTimestamp": "1746666456",
+      "childrenCount": 1,
+      "parentCount": 0,
+      "isGroup": true,
+      "transactionHash": "0x0a20a1e8186628cac01a6e92f5c2102636f07bf939d887239f47d9e867d3f0e1",
+      "nftMetadata": {
+        "name": "1315: Programmable IP Group IP NFT #1317",
+        "chainId": "1315",
+        "tokenContract": "0x4709798FeA84C84ae2475fF0c25344115eE1529f",
+        "tokenId": "1317",
+        "tokenUri": "data:application/json;base64,eyJuYW1lIjogIlN0b3J5IFByb3RvY29sIElQIEFzc2V0cyBHcm91cCAjMTMxNyIsImRlc2NyaXB0aW9uIjogSVBBc3NldCBHcm91cCIsImV4dGVybmFsX3VybCI6ICJodHRwczovL3Byb3RvY29sLnN0b3J5cHJvdG9jb2wueHl6L2lwYS8xMzE3IiwiaW1hZ2UiOiAiaHR0cHM6Ly9naXRodWIuY29tL3N0b3J5cHJvdG9jb2wvcHJvdG9jb2wtY29yZS9ibG9iL21haW4vYXNzZXRzL2xpY2Vuc2UtaW1hZ2UuZ2lmIn0=",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xEBcFe2EF4db06b06486dB10267be47eFA48b8d22",
+      "ipId": "0xEBcFe2EF4db06b06486dB10267be47eFA48b8d22",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x7eA120CAFFCcB7B8f118aB5741EFb904e7E06cb6"
+      ],
+      "blockNumber": "4092206",
+      "blockTimestamp": "1746666452",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xc1582b3a899527ef983c73bb6b4c23bf3c1518f0048a15a57fa2b362be2d662c",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11386",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11386",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11386",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0xEa740cE2750D16B0Bf59D95ae220CC9F0CCea520",
+      "ipId": "0xEa740cE2750D16B0Bf59D95ae220CC9F0CCea520",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xF461AC05b137aDcA251098f420adE6aFBBaFc483"
+      ],
+      "blockNumber": "4092206",
+      "blockTimestamp": "1746666452",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x1d4abb71b681ecf4217a62f7c04bc6a39da4e7599a8c4066cc15de324bf25eb2",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #2",
+        "chainId": "1315",
+        "tokenContract": "0xfe921f0f9a5292Ad7Ff39beFb3e484225248cc81",
+        "tokenId": "2",
+        "tokenUri": "test",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x39db7cB8649e99274606884447a076747df56cB9",
+      "ipId": "0x39db7cB8649e99274606884447a076747df56cB9",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092204",
+      "blockTimestamp": "1746666448",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x0b7dd9136499532a1d51a5e3e40aaa455854729fd4db706857f95d4a914e08fa",
+      "nftMetadata": {
+        "name": "1315: test-collection #11",
+        "chainId": "1315",
+        "tokenContract": "0x7f1f8fA07Aeb823E3bfd99406Ad78b6207d43cC7",
+        "tokenId": "11",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xF461AC05b137aDcA251098f420adE6aFBBaFc483",
+      "ipId": "0xF461AC05b137aDcA251098f420adE6aFBBaFc483",
+      "descendantCount": 5,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092203",
+      "blockTimestamp": "1746666445",
+      "childrenCount": 5,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x9dff41d1f891d94261fe7593f063884090a5db6e5fafa0cb98410f735bd4144f",
+      "nftMetadata": {
+        "name": "1315: Premium Collection #1",
+        "chainId": "1315",
+        "tokenContract": "0xfe921f0f9a5292Ad7Ff39beFb3e484225248cc81",
+        "tokenId": "1",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0x82E78eb1b87Bf5299C9C3d0E52d170D1A70F9425",
+      "ipId": "0x82E78eb1b87Bf5299C9C3d0E52d170D1A70F9425",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092201",
+      "blockTimestamp": "1746666441",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x669579fe716d551aee671bdf4903d540c3064b852625a0ad8f1f73688bddd36a",
+      "nftMetadata": {
+        "name": "1315: test-collection #10",
+        "chainId": "1315",
+        "tokenContract": "0x7f1f8fA07Aeb823E3bfd99406Ad78b6207d43cC7",
+        "tokenId": "10",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xBcd30241C50408527a94d8DF60B2D09Df584DE89",
+      "ipId": "0xBcd30241C50408527a94d8DF60B2D09Df584DE89",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x7E4767316001b48b5B7384ad9F5FCA06BF40067b"
+      ],
+      "blockNumber": "4092198",
+      "blockTimestamp": "1746666434",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x55992fe0da28324d9aad300fd87c08152f4be5bcfa3c454c305dc0907e5e5a3b",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11385",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11385",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11385",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x746ae5d587FB0f20936b72a4D7338Ee31e67D2Ea",
+      "ipId": "0x746ae5d587FB0f20936b72a4D7338Ee31e67D2Ea",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092197",
+      "blockTimestamp": "1746666433",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xed48a4d270cd61d9c13febe00622791858e4a1c304f2ee94f36ad07b3a62af29",
+      "nftMetadata": {
+        "name": "1315: test-collection #12",
+        "chainId": "1315",
+        "tokenContract": "0x7f8e6141670D6E1Fc17dc0eB8b037b2C3622BB1C",
+        "tokenId": "12",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xADBE9DF5e79bcCE2036B1342fe9599e330153537",
+      "ipId": "0xADBE9DF5e79bcCE2036B1342fe9599e330153537",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3D5593edab50799F9F04BaFCDdDE54CED37419B3"
+      ],
+      "blockNumber": "4092193",
+      "blockTimestamp": "1746666423",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x8560db2eaac3228f2b3a8125e50ede06031d651ed5f63acf295a1f43ba118489",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11384",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11384",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11384",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x7E4767316001b48b5B7384ad9F5FCA06BF40067b",
+      "ipId": "0x7E4767316001b48b5B7384ad9F5FCA06BF40067b",
+      "descendantCount": 1,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092188",
+      "blockTimestamp": "1746666413",
+      "childrenCount": 1,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x396b6acae9948a91b4e25db1eac2d49fa7b28d74b8f7b7fb9905cf60e9ba9b07",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11382",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11382",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11382",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    },
+    {
+      "id": "0xDcBAA2cF8770a0ef795b7B59bE6c6C2cFe528265",
+      "ipId": "0xDcBAA2cF8770a0ef795b7B59bE6c6C2cFe528265",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x3D17b25988455D1FeCE20bce8c3446567856758f"
+      ],
+      "blockNumber": "4092184",
+      "blockTimestamp": "1746666404",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0xdc3b35e7f540fc982f9270a4fbb4f0d2d824f9228f252ed1a02bddc91de045c3",
+      "nftMetadata": {
+        "name": "1315: test-collection #9",
+        "chainId": "1315",
+        "tokenContract": "0x7f1f8fA07Aeb823E3bfd99406Ad78b6207d43cC7",
+        "tokenId": "9",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    },
+    {
+      "id": "0x9e190BD5afB5be567f2a9034D531614E3002cC72",
+      "ipId": "0x9e190BD5afB5be567f2a9034D531614E3002cC72",
+      "descendantCount": 1,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "4092183",
+      "blockTimestamp": "1746666402",
+      "childrenCount": 1,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0xc8f5f46d451e932f182acf6c77d553a7ee09bf07f675f9c82268a255a3bc2932",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #11379",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "11379",
+        "tokenUri": "https://storyprotocol.xyz/erc721/11379",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    }
+  ],
+  "next": "gqtDb2x1bW5OYW1lc5GoX19za2lwX1+mVmFsdWVzkc0z9A=="
+}

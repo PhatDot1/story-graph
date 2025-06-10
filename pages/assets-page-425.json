@@ -1,0 +1,30 @@
+{
+  "page": 425,
+  "requestedAfter": "gqtDb2x1bW5OYW1lc5GoX19za2lwX1+mVmFsdWVzkc2A4w==",
+  "data": [
+    {
+      "id": "0x6CB20b971D97488Eca06F14CfeBd65734F52B273",
+      "ipId": "0x6CB20b971D97488Eca06F14CfeBd65734F52B273",
+      "descendantCount": 0,
+      "ancestorCount": 1,
+      "rootIpIds": [],
+      "blockNumber": "2860471",
+      "blockTimestamp": "1744004565",
+      "childrenCount": 0,
+      "parentCount": 0,
+      "isGroup": false,
+      "transactionHash": "0x7abd93fc217b3384eaa34ec5453d4528f467a17e03064fff1afeb4a878285bd9",
+      "nftMetadata": {
+        "name": "1315: MockERC721 #6656",
+        "chainId": "1315",
+        "tokenContract": "0xa1119092ea911202E0a65B743a13AE28C5CF2f21",
+        "tokenId": "6656",
+        "tokenUri": "https://storyprotocol.xyz/erc721/6656",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 0
+    }
+  ],
+  "next": "gqtDb2x1bW5OYW1lc5GoX19za2lwX1+mVmFsdWVzkc2A5A=="
+}

@@ -1,3 +1,55 @@
+TODO:
+QUERY FOR ALL OTHER INFO LIKE
+Derivatives
+
+Disputes
+Raised
+
+Creators
+JordXn
+
+50%
+Hi, I'm JordXn, author an
+
+0x...0x
+
+
+Kongrattss
+
+50%
+Yo!, I'm Kongratss, 
+
+0x...0x
+
+
+Asset Resources
+View Asset
+View Metadata
+Open in Explorer
+Open in Portal
+Royalty Payments
+No royalty payments found for this IP
+
+And most importantly:
+Available Licenses
+
+
+Non-Commercial Social Remixing
+
+Non-commercial use with attribution for derivatives
+
+0 $IP
+
+(~$0.00)
+
+
+
+
+SEE POSSIBLE INFO IN:
+https://www.ipontop.com/ip/0x5bcf73C853259f49C26CBD046fcc2Ea50E5B0434
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

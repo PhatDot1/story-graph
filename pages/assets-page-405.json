@@ -1,0 +1,32 @@
+{
+  "page": 405,
+  "requestedAfter": "gqtDb2x1bW5OYW1lc5GoX19za2lwX1+mVmFsdWVzkc2Azw==",
+  "data": [
+    {
+      "id": "0x8Cbb38D7a2A842B68f97cEa3EB2Ef2c6e8135eA3",
+      "ipId": "0x8Cbb38D7a2A842B68f97cEa3EB2Ef2c6e8135eA3",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0x771710B0103ceb3Ff42Af833B2f91087f658F62F"
+      ],
+      "blockNumber": "2860631",
+      "blockTimestamp": "1744004905",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x72c769984cc01b2e39c2508e23370cf6fc7be37d700c788342b5f84450383e88",
+      "nftMetadata": {
+        "name": "1315: test-collection #7",
+        "chainId": "1315",
+        "tokenContract": "0xb31A8672CE8484f5495709722f8387888ED95589",
+        "tokenId": "7",
+        "tokenUri": "",
+        "imageUrl": ""
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    }
+  ],
+  "next": "gqtDb2x1bW5OYW1lc5GoX19za2lwX1+mVmFsdWVzkc2A0A=="
+}

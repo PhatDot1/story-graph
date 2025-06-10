@@ -1,0 +1,32 @@
+{
+  "page": 368,
+  "requestedAfter": "gqtDb2x1bW5OYW1lc5GoX19za2lwX1+mVmFsdWVzkc2Aqg==",
+  "data": [
+    {
+      "id": "0x59761a9aE8367b288c702fd0EC9265E7B4Db94f6",
+      "ipId": "0x59761a9aE8367b288c702fd0EC9265E7B4Db94f6",
+      "descendantCount": 0,
+      "ancestorCount": 2,
+      "rootIpIds": [
+        "0xe4ea0BCc951a1CC526b71396f0377B4EeaEb8e10"
+      ],
+      "blockNumber": "2864308",
+      "blockTimestamp": "1744012726",
+      "childrenCount": 0,
+      "parentCount": 1,
+      "isGroup": false,
+      "transactionHash": "0x1f99669329c58ca4512d654e4b144436c2e3a39a170394401ced358f5832b49b",
+      "nftMetadata": {
+        "name": "1315: Story Portal Default Collection #490",
+        "chainId": "1315",
+        "tokenContract": "0x76ba2c2428F756010683c4ece6f49296b4756C1A",
+        "tokenId": "490",
+        "tokenUri": "ipfs://QmVPpnfcf4UT4iRocEnRBkFRsr5CU66oo4HNM6vWNxJcYj",
+        "imageUrl": "https://ipfs.io/ipfs/QmY9tLrE4F6wbXkH4YYbbAKmpppJaqAd1N3K9Noqz3Cf5j"
+      },
+      "latestArbitrationPolicy": "",
+      "rootCount": 1
+    }
+  ],
+  "next": "gqtDb2x1bW5OYW1lc5GoX19za2lwX1+mVmFsdWVzkc2Aqw=="
+}

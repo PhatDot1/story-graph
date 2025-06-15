@@ -3,7 +3,7 @@ import fs from "fs"
 import path from "path"
 
 async function readEnrichedVectors() {
-    const vectorsPath = path.join(process.cwd(), "enriched_vectors_reduced.jsonl")
+    const vectorsPath = path.join(process.cwd(), "enriched_vectors_reduced_sample.jsonl")
     const assetsPath = path.join(process.cwd(), "assets.ndjson")
   
     try {

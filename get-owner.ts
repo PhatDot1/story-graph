@@ -7,7 +7,7 @@ import { ethers } from "ethers"
 const RPC         = "https://aeneid.storyrpc.io"    // Aeneid Testnet RPC
 const CHAIN_ID    = 1315
 
-const INPUT_FILE  = path.resolve(process.cwd(), "assets.ndjson")
+const INPUT_FILE  = path.resolve(process.cwd(), "assets-reduced.ndjson")
 const OUTPUT_FILE = path.resolve(process.cwd(), "assets-owner.ndjson")
 
 // ── ABI ─────────────────────────────────────────────────────────────────────────

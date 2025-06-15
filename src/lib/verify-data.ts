@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 
 export function verifyDataFile() {
-  const filePath = path.join(process.cwd(), "assets.ndjson")
+  const filePath = path.join(process.cwd(), "assets-reduced.ndjson")
   console.log("Looking for file at:", filePath)
   console.log("File exists:", fs.existsSync(filePath))
 

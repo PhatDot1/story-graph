@@ -32,7 +32,7 @@ interface ProcessedData {
 }
 
 async function processNetworkDataServer(): Promise<ProcessedData> {
-  const filePath = path.join(process.cwd(), "assets.ndjson")
+  const filePath = path.join(process.cwd(), "assets-reduced.ndjson")
 
   if (!fs.existsSync(filePath)) {
     throw new Error("Assets file not found")

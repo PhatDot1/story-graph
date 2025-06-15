@@ -4,7 +4,7 @@ import type { IPAsset } from "@/types"
 
 // Function to read assets from the NDJSON file (server-side only)
 export async function readAssets(): Promise<IPAsset[]> {
-  const filePath = path.join(process.cwd(), "assets.ndjson")
+  const filePath = path.join(process.cwd(), "assets-reduced.ndjson")
   if (!fs.existsSync(filePath)) return []
 
   const fileContent = await fs.promises.readFile(filePath, "utf-8")

@@ -35,7 +35,7 @@ const storyAeneidTestnet = {
 
 const config = getDefaultConfig({
   clientId: process.env.NEXT_PUBLIC_TOMO_CLIENT_ID || 'WpOdScO5S8LMj4Hi8vwrQ0KSKQtP1pI6OcTM3If1f5bxAkRZQdivbATx7TDjfo8EGQ8JRk4Ht8MqpWzjb7C1wRhY',
-  appName: 'Story Graph - IP Asset Management',
+  appName: 'IP Radar - IP Asset Management',
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID || 'bf78bba70a5a187c80781fea455d093f',
   chains: [storyAeneidTestnet, mainnet, polygon, optimism, arbitrum, base],
   ssr: true,

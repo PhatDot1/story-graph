@@ -1,4 +1,4 @@
-import { readAssets } from "@/lib/server-data"
+import { readAssets } from "@/lib/server-data.server"
 
 export default async function DebugPage() {
   const assets = await readAssets()

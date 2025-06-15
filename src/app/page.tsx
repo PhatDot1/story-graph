@@ -1,4 +1,4 @@
-import { readAssets } from "@/lib/server-data"
+import { readAssets } from "@/lib/server-data.server"
 import { Dashboard } from "@/components/dashboard"
 
 export default async function Home() {

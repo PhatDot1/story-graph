@@ -7,8 +7,11 @@ import { ethers } from "ethers";
 const RPC = "https://aeneid.storyrpc.io";      // Aeneid Testnet RPC
 const CHAIN_ID = 1315;
 
-const NFT_CONTRACT       = "0x98Caab9438337Aa19AC2ef05864A5E3273f39Dab";
-const TOKEN_ID           = 1144;   // example tokenId
+
+const TOKEN_ID           = 1145;   // ONLY THIS CHANGES FROM FRONTEND
+
+const NFT_CONTRACT       = "0x98Caab9438337Aa19AC2ef05864A5E3273f39Dab"; 
+
 
 const IP_ASSET_REGISTRY  = "0x77319B4031e6eF1250907aa00018B8B1c67a244b";
 const LICENSE_REGISTRY   = "0x529a750E02d8E2f15649c13D69a465286a780e24";

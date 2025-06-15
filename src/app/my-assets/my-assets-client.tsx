@@ -1,57 +1,47 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useWallet } from "@/contexts/wallet-context"
+import { useTomoWallet } from "@/contexts/tomo-wallet-context"
 import { useFallbackWallet } from "@/contexts/fallback-wallet-context"
-import { readAssets } from "@/lib/server-data"
 import type { IPAsset } from "@/types"
 import { formatTimestamp, getContractName } from "@/lib/data"
 import Link from "next/link"
 import { ExternalLink, Copy } from "lucide-react"
 
-export function MyAssetsClient() {
-  const tomoWallet = useWallet()
+interface MyAssetsClientProps {
+  allAssets: Array<IPAsset & { owner?: string }>
+}
+
+export function MyAssetsClient({ allAssets }: MyAssetsClientProps) {
+  const tomoWallet     = useTomoWallet()
   const fallbackWallet = useFallbackWallet()
 
-  // Use whichever wallet is connected
-  const wallet = tomoWallet.isConnected ? tomoWallet : fallbackWallet
   const isConnected = tomoWallet.isConnected || fallbackWallet.isConnected
-  const address = tomoWallet.address || fallbackWallet.address
+  const address     = (tomoWallet.address || fallbackWallet.address)?.toLowerCase()
 
-  const [assets, setAssets] = useState<IPAsset[]>([])
-  const [loading, setLoading] = useState(false)
+  const [assets, setAssets]               = useState<IPAsset[]>([])
+  const [loading, setLoading]             = useState(false)
   const [userContracts, setUserContracts] = useState<string[]>([])
 
   useEffect(() => {
     if (isConnected && address) {
-      loadUserAssets()
-    }
-  }, [isConnected, address])
+      setLoading(true)
 
-  const loadUserAssets = async () => {
-    setLoading(true)
-    try {
-      // In a real app, you'd fetch this from an API based on the connected wallet
-      // For now, we'll simulate by filtering assets
-      const allAssets = await readAssets()
+      // Filter in only those whose on‐chain owner matches the connected address
+      const userAssets = allAssets.filter(
+        (a) => a.owner?.toLowerCase() === address
+      )
 
-      // For demo purposes, let's assume the user owns certain contracts
-      // In reality, you'd check this on-chain or via an API
-      const demoUserContracts = [
-        "0x937BEF10bA6Fb941ED84b8d249Abc76031429A9a",
-        "0x6e8f6E7fBAbDA86e2B614b53317FB9aB291Ec3c0",
-      ]
-
-      const userAssets = allAssets.filter((asset) => demoUserContracts.includes(asset.nftMetadata?.tokenContract || ""))
+      // Derive unique token contracts
+      const contracts = Array.from(
+        new Set(userAssets.map((a) => a.nftMetadata.tokenContract))
+      )
 
       setAssets(userAssets)
-      setUserContracts(demoUserContracts)
-    } catch (error) {
-      console.error("Failed to load user assets:", error)
-    } finally {
+      setUserContracts(contracts)
       setLoading(false)
     }
-  }
+  }, [isConnected, address, allAssets])
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
@@ -63,7 +53,9 @@ export function MyAssetsClient() {
         <div className="text-center">
           <div className="mb-8">
             <div className="text-6xl mb-4">🔗</div>
-            <h2 className="text-2xl font-semibold text-foreground mb-2">Connect Your Wallet</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-2">
+              Connect Your Wallet
+            </h2>
             <p className="text-muted-foreground mb-4">
               Connect your wallet to view your IP assets and token contracts on Story Protocol.
             </p>
@@ -85,33 +77,43 @@ export function MyAssetsClient() {
   }
 
   const contractStats = userContracts.map((contract) => {
-    const contractAssets = assets.filter((asset) => asset.nftMetadata?.tokenContract === contract)
+    const contractAssets = assets.filter(
+      (asset) => asset.nftMetadata.tokenContract === contract
+    )
     return {
       contract,
       name: getContractName(contract),
       assetCount: contractAssets.length,
-      totalDescendants: contractAssets.reduce((sum, asset) => sum + (asset.descendantCount || 0), 0),
+      totalDescendants: contractAssets.reduce(
+        (sum, a) => sum + (a.descendantCount || 0),
+        0
+      ),
       assets: contractAssets,
     }
   })
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div>
         <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent mb-2">
           My Assets
         </h1>
-        <p className="text-muted-foreground">View and manage your IP assets and token contracts on Story Protocol</p>
+        <p className="text-muted-foreground">
+          View and manage your IP assets and token contracts on Story Protocol
+        </p>
       </div>
 
-      {/* Wallet Info */}
+      {/* Wallet Information */}
       <div className="asset-detail-card p-6">
         <h2 className="text-xl font-semibold mb-4">Wallet Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <p className="text-sm text-muted-foreground">Connected Address</p>
             <div className="flex items-center gap-2">
-              <p className="font-mono text-sm bg-muted p-2 rounded border break-all flex-1">{address}</p>
+              <p className="font-mono text-sm bg-muted p-2 rounded border break-all flex-1">
+                {address}
+              </p>
               <button
                 onClick={() => copyToClipboard(address!)}
                 className="p-2 hover:bg-muted rounded"
@@ -137,13 +139,15 @@ export function MyAssetsClient() {
           </div>
           <div>
             <p className="text-sm text-muted-foreground">Wallet Provider</p>
-            <p className="font-semibold">{tomoWallet.isConnected ? "Tomo SDK" : "MetaMask/Web3"}</p>
+            <p className="font-semibold">
+              {tomoWallet.isConnected ? "Tomo SDK" : "MetaMask/Web3"}
+            </p>
             <p className="text-xs text-muted-foreground">Multi-chain support</p>
           </div>
         </div>
       </div>
 
-      {/* Contract Overview */}
+      {/* Token Contracts */}
       <div className="asset-detail-card p-6">
         <h2 className="text-xl font-semibold mb-4">Your Token Contracts</h2>
         {loading ? (
@@ -153,13 +157,18 @@ export function MyAssetsClient() {
           </div>
         ) : contractStats.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {contractStats.map((contract) => (
-              <div key={contract.contract} className="bg-muted/30 rounded-lg p-4 border border-border">
-                <h3 className="font-semibold mb-2">{contract.name}</h3>
+            {contractStats.map((c) => (
+              <div
+                key={c.contract}
+                className="bg-muted/30 rounded-lg p-4 border border-border"
+              >
+                <h3 className="font-semibold mb-2">{c.name}</h3>
                 <div className="flex items-center gap-2 mb-3">
-                  <p className="text-xs text-muted-foreground font-mono break-all flex-1">{contract.contract}</p>
+                  <p className="text-xs text-muted-foreground font-mono break-all flex-1">
+                    {c.contract}
+                  </p>
                   <button
-                    onClick={() => copyToClipboard(contract.contract)}
+                    onClick={() => copyToClipboard(c.contract)}
                     className="p-1 hover:bg-muted rounded"
                     title="Copy contract address"
                   >
@@ -169,11 +178,13 @@ export function MyAssetsClient() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm text-muted-foreground">Assets:</span>
-                    <span className="font-semibold">{contract.assetCount}</span>
+                    <span className="font-semibold">{c.assetCount}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-sm text-muted-foreground">Total Descendants:</span>
-                    <span className="font-semibold">{contract.totalDescendants}</span>
+                    <span className="text-sm text-muted-foreground">
+                      Total Descendants:
+                    </span>
+                    <span className="font-semibold">{c.totalDescendants}</span>
                   </div>
                 </div>
               </div>
@@ -183,19 +194,19 @@ export function MyAssetsClient() {
           <div className="text-center py-8">
             <div className="text-4xl mb-4">📄</div>
             <h3 className="text-lg font-semibold mb-2">No contracts found</h3>
-            <p className="text-muted-foreground">No token contracts associated with your wallet address.</p>
-            <p className="text-sm text-muted-foreground mt-2">
-              This is a demo showing sample contracts. In a real application, we would query the blockchain for your
-              actual contracts.
+            <p className="text-muted-foreground">
+              No token contracts associated with your wallet address.
             </p>
           </div>
         )}
       </div>
 
-      {/* Assets List */}
+      {/* Assets Table */}
       {assets.length > 0 && (
         <div className="asset-detail-card p-6">
-          <h2 className="text-xl font-semibold mb-4">Your Assets ({assets.length})</h2>
+          <h2 className="text-xl font-semibold mb-4">
+            Your Assets ({assets.length})
+          </h2>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-border">
               <thead className="table-header">
@@ -225,9 +236,9 @@ export function MyAssetsClient() {
                   <tr key={asset.ipId} className="table-row">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        {asset.nftMetadata?.imageUrl && (
+                        {asset.nftMetadata.imageUrl && (
                           <img
-                            src={asset.nftMetadata.imageUrl || "/placeholder.svg"}
+                            src={asset.nftMetadata.imageUrl}
                             alt={asset.nftMetadata.name}
                             className="h-10 w-10 rounded-lg object-cover mr-3"
                             onError={(e) => {
@@ -237,33 +248,46 @@ export function MyAssetsClient() {
                         )}
                         <div>
                           <div className="text-sm font-medium text-foreground">
-                            {asset.nftMetadata?.name || "Unnamed Asset"}
+                            {asset.nftMetadata.name || "Unnamed Asset"}
                           </div>
-                          <div className="text-xs text-muted-foreground font-mono">{asset.ipId.substring(0, 8)}...</div>
+                          <div className="text-xs text-muted-foreground font-mono">
+                            {asset.ipId.substring(0, 8)}…
+                          </div>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-foreground">
-                        {getContractName(asset.nftMetadata?.tokenContract || "")}
+                        {getContractName(asset.nftMetadata.tokenContract)}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-foreground">{asset.nftMetadata?.tokenId}</div>
+                      <div className="text-sm text-foreground">
+                        {asset.nftMetadata.tokenId}
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <span className="text-sm text-foreground">{asset.childrenCount || 0}</span>
+                        <span className="text-sm text-foreground">
+                          {asset.childrenCount || 0}
+                        </span>
                         {asset.descendantCount > 0 && (
-                          <span className="ml-2 text-xs text-muted-foreground">({asset.descendantCount} total)</span>
+                          <span className="ml-2 text-xs text-muted-foreground">
+                            ({asset.descendantCount} total)
+                          </span>
                         )}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
-                      {asset.blockTimestamp ? formatTimestamp(asset.blockTimestamp) : "N/A"}
+                      {asset.blockTimestamp
+                        ? formatTimestamp(asset.blockTimestamp)
+                        : "N/A"}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <Link href={`/asset/${encodeURIComponent(asset.ipId)}`} className="link-primary hover:underline">
+                      <Link
+                        href={`/asset/${encodeURIComponent(asset.ipId)}`}
+                        className="link-primary hover:underline"
+                      >
                         View Details
                       </Link>
                     </td>

@@ -1,4 +1,4 @@
-import { readAssets } from "@/lib/server-data"
+import { readAssets } from "@/lib/server-data.server"
 import { AssetDetail } from "@/components/asset-detail"
 import { notFound } from "next/navigation"
 
@@ -43,17 +43,17 @@ export async function generateMetadata({ params }: AssetPageProps) {
 
     if (!asset) {
       return {
-        title: "Asset Not Found - Story Graph",
+        title: "Asset Not Found - IP Radar",
       }
     }
 
     return {
-      title: `${asset.nftMetadata?.name || "IP Asset"} - Story Graph`,
+      title: `${asset.nftMetadata?.name || "IP Asset"} - IP Radar`,
       description: `View details for IP Asset ${asset.ipId}`,
     }
   } catch (error) {
     return {
-      title: "Asset Not Found - Story Graph",
+      title: "Asset Not Found - IP Radar",
     }
   }
 }

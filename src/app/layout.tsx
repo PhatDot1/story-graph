@@ -8,7 +8,7 @@ import { Sidebar } from "@/components/sidebar"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Story Graph - IP Asset Management",
+  title: "IP Radar - IP Asset Management",
   description: "Visualize and manage intellectual property assets with network analysis",
   keywords: ["IP", "intellectual property", "network analysis", "asset management", "Story Protocol"],
 }

@@ -14,11 +14,14 @@ interface AssetDetailProps {
 }
 
 export function AssetDetail({ asset, relatedAssets }: AssetDetailProps) {
+  const tokenContract = asset.nftMetadata?.tokenContract ?? ""
+  const tokenId       = asset.nftMetadata?.tokenId       ?? ""
+
   const {
     data: blockchainData,
     isLoading: isBlockchainLoading,
     error: blockchainError,
-  } = useBlockchainData(asset.ipId, asset.nftMetadata?.tokenContract, asset.nftMetadata?.tokenId)
+  } = useBlockchainData(tokenContract, tokenId)
 
   // Find assets that share the same root or are in the same collection
   const sameRootAssets = relatedAssets.filter(

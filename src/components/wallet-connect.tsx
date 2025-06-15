@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useTomoWallet } from "@/contexts/tomo-wallet-context"
 import { useFallbackWallet } from "@/contexts/fallback-wallet-context"

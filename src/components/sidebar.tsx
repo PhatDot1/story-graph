@@ -10,6 +10,7 @@ export function Sidebar() {
   const links = [
     { href: "/", label: "Dashboard" },
     { href: "/network", label: "Network View" },
+    { href: "/semantic-view", label: "Semantic View" },
     { href: "/my-assets", label: "My Assets" },
     { href: "/debug", label: "Debug" },
   ]
@@ -18,7 +19,7 @@ export function Sidebar() {
     <div className="w-64 sidebar p-6 flex flex-col h-full">
       <div className="mb-8">
         <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">
-          Story Graph
+          IP Radar
         </h1>
         <p className="text-muted-foreground text-sm mt-1">IP Asset Management</p>
       </div>

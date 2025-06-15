@@ -3,37 +3,40 @@ import fs from "fs"
 import path from "path"
 
 async function readEnrichedVectors() {
-  const vectorsPath = path.join(process.cwd(), "enriched_vectors_reduced.jsonl")
-  const assetsPath = path.join(process.cwd(), "assets.json")
-
-  try {
-    const [vectorsRaw, assetsRaw] = await Promise.all([
-      fs.promises.readFile(vectorsPath, "utf-8"),
-      fs.promises.readFile(assetsPath, "utf-8"),
-    ])
-
-    const vectorLines = vectorsRaw.split("\n").filter((line) => line.trim() !== "")
-    const vectors = vectorLines.map((line) => JSON.parse(line))
-    const assets = JSON.parse(assetsRaw)
-
-    const assetMap = new Map<string, any>()
-    for (const asset of assets) {
-      assetMap.set(asset.id.toLowerCase(), asset.nftMetadata)
-    }
-
-    return vectors.map((vec) => {
-      const meta = assetMap.get(vec.id.toLowerCase())
-      return {
-        ...vec,
-        label: meta?.name || vec.id,
-        imageUrl: meta?.imageUrl || null,
+    const vectorsPath = path.join(process.cwd(), "enriched_vectors_reduced.jsonl")
+    const assetsPath = path.join(process.cwd(), "assets.ndjson")
+  
+    try {
+      const [vectorsRaw, assetsRaw] = await Promise.all([
+        fs.promises.readFile(vectorsPath, "utf-8"),
+        fs.promises.readFile(assetsPath, "utf-8"),
+      ])
+  
+      const vectorLines = vectorsRaw.split("\n").filter((line) => line.trim() !== "")
+      const assetLines = assetsRaw.split("\n").filter((line) => line.trim() !== "")
+  
+      const vectors = vectorLines.map((line) => JSON.parse(line))
+      const assets = assetLines.map((line) => JSON.parse(line))
+  
+      const assetMap = new Map<string, any>()
+      for (const asset of assets) {
+        assetMap.set(asset.id.toLowerCase(), asset.nftMetadata)
       }
-    })
-  } catch (error) {
-    console.error("Error reading enriched vectors or assets:", error)
-    return []
+  
+      return vectors.map((vec) => {
+        const meta = assetMap.get(vec.id.toLowerCase())
+        return {
+          ...vec,
+          label: meta?.name || vec.id,
+          imageUrl: meta?.imageUrl || null,
+        }
+      })
+    } catch (error) {
+      console.error("Error reading enriched vectors or assets:", error)
+      return []
+    }
   }
-}
+  
 
 export default async function SemanticViewPage() {
   const data = await readEnrichedVectors()

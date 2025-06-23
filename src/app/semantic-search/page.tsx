@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { Button, Card, CardContent, CardHeader, CardTitle, Badge, Input } from "@/components/basic-ui"
+import { Button, Card, CardContent, CardHeader, CardTitle, Badge } from "@/components/basic-ui"
 import { Search, Upload, Image as ImageIcon, Loader2 } from "lucide-react"
 
 interface SearchResult {
@@ -111,12 +111,13 @@ export default function SemanticSearchPage() {
           {/* Text Search */}
           {searchType === "text" && (
             <div className="flex space-x-2">
-              <Input
+              <input
+                type="text"
                 placeholder="Describe what you're looking for (e.g., 'colorful abstract art', 'medieval castle', 'cute animals')"
                 value={textQuery}
-                onChange={(e) => setTextQuery(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleTextSearch()}
-                className="flex-1"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTextQuery(e.target.value)}
+                onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handleTextSearch()}
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
               <Button onClick={handleTextSearch} disabled={isLoading || !textQuery.trim()}>
                 {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}

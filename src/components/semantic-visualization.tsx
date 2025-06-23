@@ -39,6 +39,7 @@ export function SemanticVisualization({ data }: SemanticVisualizationProps) {
   const [selectedNode, setSelectedNode] = useState<SemanticNode | null>(null)
   const [similarityThreshold, setSimilarityThreshold] = useState(0.7)
   const [isLoading, setIsLoading] = useState(true)
+  const [maxNodes, setMaxNodes] = useState(500) // Add limit control for performance
 
   // Update dimensions on resize
   useEffect(() => {
@@ -62,22 +63,27 @@ export function SemanticVisualization({ data }: SemanticVisualizationProps) {
 
     setIsLoading(true)
 
+    // Use configurable limit instead of hardcoded 50
+    const limitedData = data.slice(0, maxNodes)
+    
     // Process data and create nodes
-    const nodes: SemanticNode[] = data.slice(0, 50).map((item, index) => ({
+    const nodes: SemanticNode[] = limitedData.map((item, index) => ({
       id: item.id,
       label: item.label || item.id,
       imageUrl: (item as any).imageUrl || null,
-
       description: item.descriptionText,
       embedding: item.embedding,
       x: Math.random() * dimensions.width,
       y: Math.random() * dimensions.height,
     }))
 
-    // Calculate similarities and create links
+    // Calculate similarities and create links (with performance optimization)
     const links: SemanticLink[] = []
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
+    const maxLinks = 5000 // Limit links for performance
+    let linkCount = 0
+    
+    for (let i = 0; i < nodes.length && linkCount < maxLinks; i++) {
+      for (let j = i + 1; j < nodes.length && linkCount < maxLinks; j++) {
         const similarity = cosineSimilarity(nodes[i].embedding, nodes[j].embedding)
         if (similarity > similarityThreshold) {
           links.push({
@@ -86,6 +92,7 @@ export function SemanticVisualization({ data }: SemanticVisualizationProps) {
             similarity,
             distance: similarityToDistance(similarity) * 200,
           })
+          linkCount++
         }
       }
     }
@@ -287,7 +294,7 @@ export function SemanticVisualization({ data }: SemanticVisualizationProps) {
     return () => {
       simulation.stop()
     }
-  }, [data, dimensions, similarityThreshold])
+  }, [data, dimensions, similarityThreshold, maxNodes])
 
   const handleControlClick = (action: string) => {
     const controls = (svgRef.current as any)?._controls
@@ -317,18 +324,36 @@ export function SemanticVisualization({ data }: SemanticVisualizationProps) {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
-          <label className="text-sm font-medium">Similarity Threshold:</label>
-          <input
-            type="range"
-            min="0.5"
-            max="0.95"
-            step="0.05"
-            value={similarityThreshold}
-            onChange={(e) => setSimilarityThreshold(Number.parseFloat(e.target.value))}
-            className="w-32"
-          />
-          <Badge variant="secondary">{similarityThreshold.toFixed(2)}</Badge>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium">Max Nodes:</label>
+            <select 
+              value={maxNodes} 
+              onChange={(e) => setMaxNodes(Number(e.target.value))}
+              className="border rounded px-2 py-1 text-sm"
+            >
+              <option value={100}>100</option>
+              <option value={250}>250</option>
+              <option value={500}>500</option>
+              <option value={1000}>1000</option>
+              <option value={2000}>2000</option>
+              <option value={data.length}>All ({data.length})</option>
+            </select>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium">Similarity Threshold:</label>
+            <input
+              type="range"
+              min="0.5"
+              max="0.95"
+              step="0.05"
+              value={similarityThreshold}
+              onChange={(e) => setSimilarityThreshold(Number.parseFloat(e.target.value))}
+              className="w-32"
+            />
+            <Badge variant="secondary">{similarityThreshold.toFixed(2)}</Badge>
+          </div>
         </div>
       </div>
 

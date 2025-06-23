@@ -1,45 +1,55 @@
 import { SemanticVisualization } from "@/components/semantic-visualization"
-import fs from "fs"
-import path from "path"
+import { BigQuery } from '@google-cloud/bigquery'
 
-async function readEnrichedVectors() {
-    const vectorsPath = path.join(process.cwd(), "enriched_vectors_reduced_sample.jsonl")
-    const assetsPath = path.join(process.cwd(), "assets-reduced.ndjson")
-  
-    try {
-      const [vectorsRaw, assetsRaw] = await Promise.all([
-        fs.promises.readFile(vectorsPath, "utf-8"),
-        fs.promises.readFile(assetsPath, "utf-8"),
-      ])
-  
-      const vectorLines = vectorsRaw.split("\n").filter((line) => line.trim() !== "")
-      const assetLines = assetsRaw.split("\n").filter((line) => line.trim() !== "")
-  
-      const vectors = vectorLines.map((line) => JSON.parse(line))
-      const assets = assetLines.map((line) => JSON.parse(line))
-  
-      const assetMap = new Map<string, any>()
-      for (const asset of assets) {
-        assetMap.set(asset.id.toLowerCase(), asset.nftMetadata)
+// Initialize BigQuery client using environment variables
+const bigquery = new BigQuery({
+  projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+  credentials: {
+    type: process.env.GOOGLE_CLOUD_SERVICE_ACCOUNT_TYPE,
+    project_id: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    private_key_id: process.env.GOOGLE_CLOUD_PRIVATE_KEY_ID,
+    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+    client_id: process.env.GOOGLE_CLOUD_CLIENT_ID,
+  },
+})
+
+async function fetchEnrichedVectors() {
+  try {
+    console.log('Fetching data from BigQuery...')
+    
+    // OPTIMIZED: Single query with JOIN to only get needed asset metadata
+    const optimizedQuery = `
+      SELECT 
+        v.*,
+        a.nftMetadata
+      FROM \`storygraph-462415.storygraph.vector_embeddings_external\` v
+      LEFT JOIN \`storygraph-462415.storygraph.assets_external\` a
+      ON v.id = a.id
+      LIMIT 2000
+    `
+
+    const [result] = await bigquery.query({ query: optimizedQuery })
+    
+    console.log(`Fetched ${result.length} enriched vectors`)
+
+    // Process the joined data
+    return result.map((row) => {
+      const meta = row.nftMetadata
+      return {
+        ...row,
+        label: meta?.name || String(row.id || 'Unknown'),
+        imageUrl: meta?.imageUrl || null,
       }
-  
-      return vectors.map((vec) => {
-        const meta = assetMap.get(vec.id.toLowerCase())
-        return {
-          ...vec,
-          label: meta?.name || vec.id,
-          imageUrl: meta?.imageUrl || null,
-        }
-      })
-    } catch (error) {
-      console.error("Error reading enriched vectors or assets:", error)
-      return []
-    }
+    })
+  } catch (error) {
+    console.error("Error fetching data from BigQuery:", error)
+    return []
   }
-  
+}
 
 export default async function SemanticViewPage() {
-  const data = await readEnrichedVectors()
+  const data = await fetchEnrichedVectors()
 
   return (
     <div className="space-y-6">

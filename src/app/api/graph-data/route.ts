@@ -25,7 +25,8 @@ interface RawVectorData {
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get('limit') || '500', 10);
+    const requestedLimit = parseInt(searchParams.get('limit') || '50', 10);
+    const limit = Math.min(requestedLimit, 50); // SET THIS FOR NOW TO ENSURE VERCEL DOESNT CRY
     
     // --- FIX IS HERE ---
     // Removed the extraneous `, 10` from the end of the line.

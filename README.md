@@ -22,8 +22,16 @@ Available Licenses
 SWITCH D3 USAGE TO:
 Pixi.js or Sigma.js FOR HIGHER PERFORMANCE AND INCREASING NUMBER OF NODES IN GRAPHS
 
+OR Try Hosting via Python Web Visualization:
+streamlit
+Plotly Dash	
+Voilà
+gradio
 
-
+hostijg:
+Render.com
+Fly.io
+ 
 
 
 

@@ -111,15 +111,15 @@ export async function POST(request: NextRequest) {
     const contentType = request.headers.get('content-type') || ''
     
     let searchQuery: string
-    let limit = 20
+    let similarityThreshold = 0.3 // Default threshold
     
     if (contentType.includes('multipart/form-data')) {
       // Handle image search
       const formData = await request.formData()
       const imageFile = formData.get('image') as File
-      const limitParam = formData.get('limit') as string
+      const thresholdParam = formData.get('similarityThreshold') as string
       
-      if (limitParam) limit = parseInt(limitParam)
+      if (thresholdParam) similarityThreshold = parseFloat(thresholdParam)
       
       if (!imageFile) {
         return NextResponse.json({ error: 'No image provided' }, { status: 400 })
@@ -131,9 +131,9 @@ export async function POST(request: NextRequest) {
     } else {
       // Handle text search
       const body = await request.json()
-      const { query, limit: bodyLimit } = body
+      const { query, similarityThreshold: bodyThreshold } = body
       
-      if (bodyLimit) limit = bodyLimit
+      if (bodyThreshold !== undefined) similarityThreshold = bodyThreshold
       
       if (!query) {
         return NextResponse.json({ error: 'No query provided' }, { status: 400 })
@@ -141,6 +141,8 @@ export async function POST(request: NextRequest) {
       
       searchQuery = query
     }
+    
+    console.log(`Searching for: "${searchQuery}" with threshold: ${similarityThreshold}`)
     
     // Fetch assets with their description text from BigQuery
     const assetsQuery = `
@@ -175,18 +177,21 @@ export async function POST(request: NextRequest) {
         console.log(`Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(rows.length / batchSize)}`)
         const similarities = await getSimilarityScores(searchQuery, descriptions)
         
-        // Combine results with metadata
+        // Combine results with metadata and filter by threshold
         for (let j = 0; j < batch.length; j++) {
           const row = batch[j]
           const similarity = similarities[j] || 0
           
-          results.push({
-            id: row.id,
-            label: row.nftMetadata?.name || row.id,
-            imageUrl: row.nftMetadata?.imageUrl || null,
-            description: row.descriptionText,
-            similarity: similarity
-          })
+          // Only include results that meet the similarity threshold
+          if (similarity >= similarityThreshold) {
+            results.push({
+              id: row.id,
+              label: row.nftMetadata?.name || row.id,
+              imageUrl: row.nftMetadata?.imageUrl || null,
+              description: row.descriptionText,
+              similarity: similarity
+            })
+          }
         }
       } catch (error) {
         console.error(`Error processing batch ${i}-${i + batchSize}:`, error)
@@ -200,16 +205,21 @@ export async function POST(request: NextRequest) {
       }
     }
     
-    // Sort by similarity and return top results
+    // Sort by similarity and cap at 50 results
     const sortedResults = results
       .sort((a, b) => b.similarity - a.similarity)
-      .slice(0, limit)
+      .slice(0, 50)
     
-    console.log(`Returning ${sortedResults.length} results`)
+    console.log(`Returning ${sortedResults.length} results above threshold ${similarityThreshold}`)
+    
     return NextResponse.json({ 
       results: sortedResults,
       query: searchQuery,
-      total_processed: results.length
+      threshold: similarityThreshold,
+      total_processed: results.length,
+      message: results.length === 0 ? 
+        `No results found above similarity threshold of ${(similarityThreshold * 100).toFixed(0)}%` : 
+        `Found ${sortedResults.length} results above ${(similarityThreshold * 100).toFixed(0)}% similarity`
     })
     
   } catch (error) {

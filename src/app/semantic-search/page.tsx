@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { Button, Card, CardContent, CardHeader, CardTitle, Badge } from "@/components/basic-ui"
-import { Search, Upload, Image as ImageIcon, Loader2 } from "lucide-react"
+import { Search, Upload, Image as ImageIcon, Loader2, Settings } from "lucide-react"
 
 interface SearchResult {
   id: string
@@ -18,6 +18,8 @@ export default function SemanticSearchPage() {
   const [results, setResults] = useState<SearchResult[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [searchType, setSearchType] = useState<"text" | "image">("text")
+  const [similarityThreshold, setSimilarityThreshold] = useState(0.3) // Default 30%
+  const [showSettings, setShowSettings] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleTextSearch = async () => {
@@ -31,7 +33,7 @@ export default function SemanticSearchPage() {
         body: JSON.stringify({ 
           query: textQuery, 
           type: 'text',
-          limit: 20 
+          similarityThreshold: similarityThreshold 
         }),
       })
       
@@ -51,7 +53,7 @@ export default function SemanticSearchPage() {
     try {
       const formData = new FormData()
       formData.append('image', imageFile)
-      formData.append('limit', '20')
+      formData.append('similarityThreshold', similarityThreshold.toString())
       
       const response = await fetch('/api/semantic-search', {
         method: 'POST',
@@ -80,16 +82,57 @@ export default function SemanticSearchPage() {
       <div>
         <h1 className="text-3xl font-bold">Semantic Search</h1>
         <p className="text-muted-foreground mt-2">
-          Search for similar IP assets using natural language or image similarity. PLEASE NOTE THAT THIS WILL HAVE COLD STARTS WHILE THIS IS IN DEMO STAGE BEFORE WE HOST OUR OWN API ENDPOINT
+          Search for similar IP assets using natural language or image similarity. PLEASE NOTE THAT THIS WILL HAVE COLD STARTS WHILE THIS IS IN DEMO STAGE BEFORE WE HOST OUR OWN API ENDPOINT - also need to host somewhere real not vercel
         </p>
       </div>
 
       {/* Search Interface */}
       <Card className="asset-detail-card">
         <CardHeader>
-          <CardTitle>Search Interface</CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle>Search Interface</CardTitle>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowSettings(!showSettings)}
+            >
+              <Settings className="h-4 w-4 mr-2" />
+              Settings
+            </Button>
+          </div>
         </CardHeader>
         <CardContent className="space-y-4">
+          {/* Settings Panel */}
+          {showSettings && (
+            <Card className="bg-muted/50 border-dashed">
+              <CardContent className="pt-4">
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">
+                      Similarity Threshold: {(similarityThreshold * 100).toFixed(0)}%
+                    </label>
+                    <div className="flex items-center space-x-4">
+                      <span className="text-xs text-muted-foreground w-8">0%</span>
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.05"
+                        value={similarityThreshold}
+                        onChange={(e) => setSimilarityThreshold(parseFloat(e.target.value))}
+                        className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                      />
+                      <span className="text-xs text-muted-foreground w-12">100%</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Only show results above this similarity score. Higher values = more selective.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Search Type Tabs */}
           <div className="flex space-x-2">
             <Button 
@@ -186,10 +229,13 @@ export default function SemanticSearchPage() {
       </Card>
 
       {/* Results */}
-      {results.length > 0 && (
+      {results.length > 0 ? (
         <Card className="asset-detail-card">
           <CardHeader>
             <CardTitle>Search Results ({results.length})</CardTitle>
+            <p className="text-sm text-muted-foreground">
+              Showing results with similarity ≥ {(similarityThreshold * 100).toFixed(0)}%
+            </p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -222,6 +268,27 @@ export default function SemanticSearchPage() {
             </div>
           </CardContent>
         </Card>
+      ) : (
+        // Show "no results" message when search has been performed but no results match threshold
+        isLoading === false && (textQuery.trim() || imageFile) && (
+          <Card className="asset-detail-card">
+            <CardContent className="text-center py-12">
+              <div className="space-y-2">
+                <p className="text-lg font-medium text-muted-foreground">No similar results found</p>
+                <p className="text-sm text-muted-foreground">
+                  Try lowering the similarity threshold or using different search terms
+                </p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setSimilarityThreshold(Math.max(0, similarityThreshold - 0.1))}
+                  disabled={similarityThreshold <= 0}
+                >
+                  Lower Threshold to {Math.max(0, (similarityThreshold - 0.1) * 100).toFixed(0)}%
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )
       )}
 
       {/* Example Queries */}
@@ -259,7 +326,8 @@ export default function SemanticSearchPage() {
               <ul className="space-y-1 text-sm text-muted-foreground">
                 <li>• Text searches use semantic embedding similarity</li>
                 <li>• Image searches compare visual features</li>
-                <li>• Results are ranked by similarity score</li>
+                <li>• Results are filtered by similarity threshold</li>
+                <li>• Maximum 50 results shown even if more match</li>
                 <li>• Upload any image to find visually similar assets</li>
               </ul>
             </div>

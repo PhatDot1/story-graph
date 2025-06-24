@@ -26,7 +26,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const requestedLimit = parseInt(searchParams.get('limit') || '50', 10);
-    const limit = Math.min(requestedLimit, 20); // SET THIS FOR NOW TO ENSURE VERCEL DOESNT CRY
+    const limit = Math.min(requestedLimit, 5000); // SET THIS FOR NOW TO ENSURE VERCEL DOESNT CRY
     
     // --- FIX IS HERE ---
     // Removed the extraneous `, 10` from the end of the line.

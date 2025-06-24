@@ -11,6 +11,7 @@ export function Sidebar() {
     { href: "/", label: "Dashboard" },
     { href: "/network", label: "Network View" },
     { href: "/semantic-view", label: "Semantic View" },
+    { href: "/semantic-search", label: "Semantic Search (Demo)" },
     { href: "/my-assets", label: "My Assets" },
     { href: "/debug", label: "Debug" },
   ]

@@ -80,7 +80,7 @@ export default function SemanticSearchPage() {
       <div>
         <h1 className="text-3xl font-bold">Semantic Search</h1>
         <p className="text-muted-foreground mt-2">
-          Search for similar IP assets using natural language or image similarity.
+          Search for similar IP assets using natural language or image similarity. PLEASE NOTE THAT THIS WILL HAVE COLD STARTS WHILE THIS IS IN DEMO STAGE BEFORE WE HOST OUR OWN API ENDPOINT
         </p>
       </div>
 

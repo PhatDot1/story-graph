@@ -14,57 +14,95 @@ const bigquery = new BigQuery({
   },
 })
 
-// Cosine similarity function
-function cosineSimilarity(a: number[], b: number[]): number {
-  const dotProduct = a.reduce((sum, val, i) => sum + val * b[i], 0)
-  const magnitudeA = Math.sqrt(a.reduce((sum, val) => sum + val * val, 0))
-  const magnitudeB = Math.sqrt(b.reduce((sum, val) => sum + val * val, 0))
-  return dotProduct / (magnitudeA * magnitudeB)
-}
-
-// Text embedding using BLIP service
-async function getTextEmbedding(text: string): Promise<number[]> {
-  try {
-    const response = await fetch(`${process.env.BLIP_EMBEDDING_SERVICE_URL}/embed/text`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text }),
-    })
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+// Helper function to query Hugging Face Inference API with retries
+async function queryHuggingFace(url: string, data: any, retries = 3): Promise<any> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const isBuffer = data instanceof Buffer
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
+          "Content-Type": isBuffer ? "application/octet-stream" : "application/json",
+        },
+        method: "POST",
+        body: isBuffer ? data : JSON.stringify(data),
+      })
+      
+      if (response.status === 503) {
+        // Model is loading, wait and retry
+        const result = await response.json()
+        if (result.estimated_time) {
+          console.log(`Model loading, waiting ${result.estimated_time}s...`)
+          await new Promise(resolve => setTimeout(resolve, Math.min(result.estimated_time * 1000, 20000)))
+          continue
+        }
+      }
+      
+      if (!response.ok) {
+        const errorText = await response.text()
+        console.error(`HF API Error ${response.status}: ${errorText}`)
+        throw new Error(`HTTP error! status: ${response.status}, body: ${errorText}`)
+      }
+      
+      return await response.json()
+    } catch (error) {
+      console.error(`Attempt ${i + 1} failed:`, error)
+      if (i === retries - 1) throw error
+      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1))) // Exponential backoff
     }
-    
-    const data = await response.json()
-    return data.embedding
-  } catch (error) {
-    console.error('Error getting text embedding:', error)
-    throw new Error('Failed to generate text embedding')
   }
 }
 
-// Image embedding using BLIP service
-async function getImageEmbedding(imageBuffer: Buffer): Promise<number[]> {
+// Get image caption using BLIP
+async function getImageCaption(imageBuffer: Buffer): Promise<string> {
   try {
-    const formData = new FormData()
-    formData.append('file', new Blob([imageBuffer]))
+    console.log('Getting image caption with BLIP...')
+    const captionResult = await queryHuggingFace(
+      "https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-base",
+      imageBuffer
+    )
     
-    const response = await fetch(`${process.env.BLIP_EMBEDDING_SERVICE_URL}/embed/image`, {
-      method: 'POST',
-      body: formData,
-    })
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+    let caption = ""
+    if (Array.isArray(captionResult) && captionResult[0]?.generated_text) {
+      caption = captionResult[0].generated_text
+    } else if (typeof captionResult === 'string') {
+      caption = captionResult
+    } else if (captionResult?.generated_text) {
+      caption = captionResult.generated_text
+    } else {
+      throw new Error('Unexpected caption format: ' + JSON.stringify(captionResult))
     }
     
-    const data = await response.json()
-    return data.embedding
+    console.log('Generated caption:', caption)
+    return caption
   } catch (error) {
-    console.error('Error getting image embedding:', error)
-    throw new Error('Failed to generate image embedding')
+    console.error('Error getting image caption:', error)
+    throw new Error('Failed to generate image caption')
+  }
+}
+
+// Get similarity scores using sentence-similarity pipeline
+async function getSimilarityScores(sourceText: string, targetTexts: string[]): Promise<number[]> {
+  try {
+    const result = await queryHuggingFace(
+      "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2",
+      {
+        inputs: {
+          source_sentence: sourceText,
+          sentences: targetTexts
+        }
+      }
+    )
+    
+    // Result should be an array of similarity scores
+    if (Array.isArray(result)) {
+      return result
+    }
+    
+    throw new Error('Unexpected similarity response format: ' + JSON.stringify(result))
+  } catch (error) {
+    console.error('Error getting similarity scores:', error)
+    throw new Error('Failed to get similarity scores')
   }
 }
 
@@ -72,7 +110,7 @@ export async function POST(request: NextRequest) {
   try {
     const contentType = request.headers.get('content-type') || ''
     
-    let queryEmbedding: number[]
+    let searchQuery: string
     let limit = 20
     
     if (contentType.includes('multipart/form-data')) {
@@ -88,7 +126,7 @@ export async function POST(request: NextRequest) {
       }
       
       const imageBuffer = Buffer.from(await imageFile.arrayBuffer())
-      queryEmbedding = await getImageEmbedding(imageBuffer)
+      searchQuery = await getImageCaption(imageBuffer)
       
     } else {
       // Handle text search
@@ -101,45 +139,83 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'No query provided' }, { status: 400 })
       }
       
-      queryEmbedding = await getTextEmbedding(query)
+      searchQuery = query
     }
     
-    // Fetch all embeddings from BigQuery
-    const embeddingsQuery = `
+    // Fetch assets with their description text from BigQuery
+    const assetsQuery = `
       SELECT 
         v.id,
-        v.embedding,
         v.descriptionText,
         a.nftMetadata
       FROM \`storygraph-462415.storygraph.vector_embeddings_external\` v
       LEFT JOIN \`storygraph-462415.storygraph.assets_external\` a
       ON v.id = a.id
-      WHERE v.embedding IS NOT NULL
+      WHERE v.descriptionText IS NOT NULL
+      AND LENGTH(v.descriptionText) > 0
+      LIMIT 500
     `
     
-    const [rows] = await bigquery.query({ query: embeddingsQuery })
+    const [rows] = await bigquery.query({ query: assetsQuery })
+    console.log(`Found ${rows.length} assets to compare`)
     
-    // Calculate similarities
-    const results = rows
-      .map((row: any) => {
-        const similarity = cosineSimilarity(queryEmbedding, row.embedding)
-        return {
-          id: row.id,
-          label: row.nftMetadata?.name || row.id,
-          imageUrl: row.nftMetadata?.imageUrl || null,
-          description: row.descriptionText,
-          similarity
+    if (rows.length === 0) {
+      return NextResponse.json({ results: [] })
+    }
+    
+    // Process in batches since HF API has limits
+    const batchSize = 50 // Adjust based on API limits
+    const results: any[] = []
+    
+    for (let i = 0; i < rows.length; i += batchSize) {
+      const batch = rows.slice(i, i + batchSize)
+      const descriptions = batch.map((row: any) => row.descriptionText || '')
+      
+      try {
+        console.log(`Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(rows.length / batchSize)}`)
+        const similarities = await getSimilarityScores(searchQuery, descriptions)
+        
+        // Combine results with metadata
+        for (let j = 0; j < batch.length; j++) {
+          const row = batch[j]
+          const similarity = similarities[j] || 0
+          
+          results.push({
+            id: row.id,
+            label: row.nftMetadata?.name || row.id,
+            imageUrl: row.nftMetadata?.imageUrl || null,
+            description: row.descriptionText,
+            similarity: similarity
+          })
         }
-      })
-      .sort((a: any, b: any) => b.similarity - a.similarity)
+      } catch (error) {
+        console.error(`Error processing batch ${i}-${i + batchSize}:`, error)
+        // Continue with next batch if one fails
+        continue
+      }
+      
+      // Add small delay between batches to avoid rate limiting
+      if (i + batchSize < rows.length) {
+        await new Promise(resolve => setTimeout(resolve, 1000))
+      }
+    }
+    
+    // Sort by similarity and return top results
+    const sortedResults = results
+      .sort((a, b) => b.similarity - a.similarity)
       .slice(0, limit)
     
-    return NextResponse.json({ results })
+    console.log(`Returning ${sortedResults.length} results`)
+    return NextResponse.json({ 
+      results: sortedResults,
+      query: searchQuery,
+      total_processed: results.length
+    })
     
   } catch (error) {
     console.error('Semantic search error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' }, 
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' }, 
       { status: 500 }
     )
   }

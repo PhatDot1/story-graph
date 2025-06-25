@@ -1,3 +1,5 @@
+// app/api/assets/route.ts
+import { NextResponse } from "next/server"
 import { BigQuery } from "@google-cloud/bigquery"
 import type { IPAsset } from "@/types"
 
@@ -14,14 +16,13 @@ const bigquery = new BigQuery({
   },
 })
 
-// Function to read assets from BigQuery (server-side only)
-export async function readAssets(): Promise<IPAsset[]> {
+async function fetchAssets(): Promise<IPAsset[]> {
   try {
     const query = `
       SELECT *
       FROM \`storygraph-462415.storygraph.assets_external\`
       ORDER BY descendantCount DESC, childrenCount DESC
-      LIMIT 20000
+      LIMIT 35000
     `
 
     const [rows] = await bigquery.query(query)
@@ -53,9 +54,26 @@ export async function readAssets(): Promise<IPAsset[]> {
       })
       .filter(Boolean) as IPAsset[]
 
+    console.log(`Fetched ${assets.length} assets from BigQuery`)
     return assets
   } catch (error) {
     console.error("Error fetching assets from BigQuery:", error)
-    return []
+    throw new Error("Failed to fetch assets from BigQuery")
   }
 }
+
+export async function GET() {
+  try {
+    const assets = await fetchAssets()
+    return NextResponse.json(assets)
+  } catch (error) {
+    console.error("Error in assets API route:", error)
+    return NextResponse.json(
+      { error: "Failed to fetch assets" }, 
+      { status: 500 }
+    )
+  }
+}
+
+// Increase timeout for large dataset
+export const maxDuration = 60

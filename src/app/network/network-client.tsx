@@ -2,14 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { D3NetworkVisualization } from "@/components/d3-network-visualization"
-import { NetworkVisualization } from "@/components/network-visualization"
-import { fetchOptimizedNetworkData, fetchNetworkData, fetchCommunityViewData } from "@/lib/data-processor"
-
-interface ProcessedNetworkData {
-  nodes: any[]
-  edges: any[]
-  stats: any
-}
+import { fetchCommunityViewData } from "@/lib/data-processor"
 
 interface CommunityViewData {
   nodes: any[]
@@ -17,23 +10,17 @@ interface CommunityViewData {
   stats: any
 }
 
-type ViewMode = "community" | "optimized" | "full"
-
 export function NetworkPageClient() {
-  const [networkData, setNetworkData] = useState<ProcessedNetworkData | null>(null)
   const [communityData, setCommunityData] = useState<CommunityViewData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [viewMode, setViewMode] = useState<ViewMode>("community")
-  const [isLoadingMode, setIsLoadingMode] = useState(false)
 
   useEffect(() => {
-    const loadInitialData = async () => {
+    const loadData = async () => {
       try {
         setLoading(true)
         setError(null)
 
-        // Load community view by default (fastest and cleanest)
         const data = await fetchCommunityViewData()
         setCommunityData(data)
         console.log("Community data loaded:", data)
@@ -45,37 +32,8 @@ export function NetworkPageClient() {
       }
     }
 
-    loadInitialData()
+    loadData()
   }, [])
-
-  const handleViewModeChange = async (newMode: ViewMode) => {
-    if (newMode === viewMode || isLoadingMode) return
-
-    try {
-      setIsLoadingMode(true)
-      setError(null)
-
-      if (newMode === "community") {
-        if (!communityData) {
-          const data = await fetchCommunityViewData()
-          setCommunityData(data)
-        }
-      } else if (newMode === "optimized") {
-        const data = await fetchOptimizedNetworkData()
-        setNetworkData(data)
-      } else if (newMode === "full") {
-        const data = await fetchNetworkData()
-        setNetworkData(data)
-      }
-
-      setViewMode(newMode)
-    } catch (err) {
-      console.error(`Failed to load ${newMode} view:`, err)
-      setError(`Failed to load ${newMode} view`)
-    } finally {
-      setIsLoadingMode(false)
-    }
-  }
 
   if (loading) {
     return (
@@ -89,7 +47,7 @@ export function NetworkPageClient() {
     )
   }
 
-  if (error || (!communityData && !networkData)) {
+  if (error || !communityData) {
     return (
       <div className="h-full flex items-center justify-center">
         <div className="text-center">
@@ -107,19 +65,6 @@ export function NetworkPageClient() {
     )
   }
 
-  const currentData = viewMode === "community" ? communityData : networkData
-  if (!currentData) return null
-
-  const getStatsText = () => {
-    if (viewMode === "community") {
-      return `${communityData?.stats.visibleCommunities} communities representing ${communityData?.stats.totalAssets.toLocaleString()} assets`
-    } else if (viewMode === "optimized") {
-      return `${networkData?.stats.optimizedNodes || networkData?.nodes.length} optimized nodes from ${networkData?.stats.totalAssets.toLocaleString()} total assets`
-    } else {
-      return `${networkData?.nodes.length} nodes from ${networkData?.stats.totalAssets.toLocaleString()} total assets`
-    }
-  }
-
   return (
     <div className="h-full flex flex-col">
       <div className="mb-6">
@@ -128,42 +73,14 @@ export function NetworkPageClient() {
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent mb-2">
               IP Asset Network
             </h1>
-            <p className="text-muted-foreground">Interactive network visualization showing {getStatsText()}.</p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="text-right mr-4">
-              <div className="text-sm font-medium">
-                {viewMode === "community" && <span className="text-blue-600">Community View</span>}
-                {viewMode === "optimized" && <span className="text-green-600">Optimized View</span>}
-                {viewMode === "full" && <span className="text-yellow-600">Full Dataset</span>}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                {viewMode === "community" && "Communities as blobs (D3.js)"}
-                {viewMode === "optimized" && "Major communities only"}
-                {viewMode === "full" && "All communities loaded"}
-              </div>
-            </div>
-
-            <select
-              value={viewMode}
-              onChange={(e) => handleViewModeChange(e.target.value as ViewMode)}
-              disabled={isLoadingMode}
-              className="bg-input border border-border rounded px-3 py-2 text-sm"
-            >
-              <option value="community">Community View (D3.js)</option>
-              <option value="optimized">Optimized View</option>
-              <option value="full">Full Dataset</option>
-            </select>
-
-            {isLoadingMode && (
-              <div className="animate-spin w-4 h-4 border-2 border-primary border-t-transparent rounded-full"></div>
-            )}
+            <p className="text-muted-foreground">
+              Interactive network visualization showing {communityData.stats.visibleCommunities} communities representing {communityData.stats.totalAssets.toLocaleString()} assets.
+            </p>
           </div>
         </div>
 
-        {/* Dataset Info for Community View */}
-        {viewMode === "community" && communityData?.stats.communityBreakdown && (
+        {/* Dataset Info */}
+        {communityData?.stats.communityBreakdown && (
           <div className="bg-card p-4 rounded-lg border mb-4">
             <h3 className="font-semibold mb-2">Community Distribution</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
@@ -190,32 +107,10 @@ export function NetworkPageClient() {
             </div>
           </div>
         )}
-
-        {/* Performance Warning */}
-        {viewMode === "full" && networkData && networkData.nodes.length > 1000 && (
-          <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4 mb-4">
-            <div className="flex items-center gap-2">
-              <div className="text-yellow-500">⚠️</div>
-              <div>
-                <div className="font-medium text-yellow-600">Performance Notice</div>
-                <div className="text-sm text-muted-foreground">
-                  Rendering {networkData.nodes.length} nodes may impact performance. Consider using the community view
-                  for better responsiveness.
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       <div className="flex-1">
-        {viewMode === "community" && communityData ? (
-          <D3NetworkVisualization communityData={communityData} />
-        ) : (
-          networkData && (
-            <NetworkVisualization networkData={networkData} assets={[]} isOptimizedView={viewMode === "optimized"} />
-          )
-        )}
+        <D3NetworkVisualization communityData={communityData} />
       </div>
     </div>
   )

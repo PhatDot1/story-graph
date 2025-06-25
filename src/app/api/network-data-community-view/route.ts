@@ -44,7 +44,7 @@ interface CommunityViewData {
 }
 
 async function processCommunityViewData(): Promise<CommunityViewData> {
-  const filePath = path.join(process.cwd(), "assets-reduced.ndjson")
+  const filePath = path.join(process.cwd(), "assets.ndjson")
 
   if (!fs.existsSync(filePath)) {
     throw new Error("Assets file not found")

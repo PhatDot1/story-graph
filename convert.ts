@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 
 const INPUT = path.resolve(process.cwd(), "assets.json");
-const OUTPUT = path.resolve(process.cwd(), "assets-reduced.ndjson");
+const OUTPUT = path.resolve(process.cwd(), "assets.ndjson");
 
 function convertJsonToNdjson() {
   if (!fs.existsSync(INPUT)) {

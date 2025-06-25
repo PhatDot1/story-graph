@@ -1,42 +1,7 @@
-TODO:
-QUERY FOR ALL OTHER INFO LIKE
-Derivatives
-Disputes
-Raised
-Creators
-
-Consider filtering out assets without an imageURI?
+VERCEL FRAGILE -> MOVED ALL TO CLIENT SIDE RENDERING IN API ROUTES FOR DEMO BUT NOT PERMANENT SOLUTION
 
 
-Asset Resources
-View Asset
-View Metadata
-Open in Explorer
-Open in Portal
-Royalty Payments
-No royalty payments found for this IP
-
-And most importantly:
-Available Licenses
-
-SWITCH D3 USAGE TO:
-Pixi.js or Sigma.js FOR HIGHER PERFORMANCE AND INCREASING NUMBER OF NODES IN GRAPHS
-
-OR Try Hosting via Python Web Visualization:
-streamlit
-Plotly Dash	
-Voilà
-gradio
-
-hostijg:
-Render.com
-Fly.io
- 
-
-
-
-VERCEL IS JUST TOO FRAGILE PERIOD. EMBED VISUALIZATION INTO AN <iframe> FOR MY OWN VISUALIZATION ON GCP AND TRY THIS SOLUTION
-
+WANT ADDITIONAL DATA STREAM FOR NETWORK VIEW 
 
 
 # IP Radar – IP Knowledge Graph Explorer

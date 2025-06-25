@@ -1,4 +1,3 @@
-// app/api/assets/route.ts
 import { NextResponse } from "next/server"
 import { BigQuery } from "@google-cloud/bigquery"
 import type { IPAsset } from "@/types"
@@ -21,8 +20,6 @@ async function fetchAssets(): Promise<IPAsset[]> {
     const query = `
       SELECT *
       FROM \`storygraph-462415.storygraph.assets_external\`
-      ORDER BY descendantCount DESC, childrenCount DESC
-      LIMIT 35000
     `
 
     const [rows] = await bigquery.query(query)

@@ -1,27 +1,75 @@
-import fs from "fs"
-import path from "path"
+import { BigQuery } from "@google-cloud/bigquery"
 
-export function verifyDataFile() {
-  const filePath = path.join(process.cwd(), "assets.ndjson")
-  console.log("Looking for file at:", filePath)
-  console.log("File exists:", fs.existsSync(filePath))
+// Initialize BigQuery client
+const bigquery = new BigQuery({
+  projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+  credentials: {
+    type: process.env.GOOGLE_CLOUD_SERVICE_ACCOUNT_TYPE,
+    project_id: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    private_key_id: process.env.GOOGLE_CLOUD_PRIVATE_KEY_ID,
+    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+    client_id: process.env.GOOGLE_CLOUD_CLIENT_ID,
+  },
+})
 
-  if (fs.existsSync(filePath)) {
-    const stats = fs.statSync(filePath)
-    console.log("File size:", stats.size, "bytes")
+export async function verifyDataFile() {
+  try {
+    console.log("Verifying BigQuery table: storygraph-462415.storygraph.assets_external")
 
-    const content = fs.readFileSync(filePath, "utf-8")
-    const lines = content.split("\n").filter((line) => line.trim() !== "")
-    console.log("Number of lines:", lines.length)
+    // Check if table exists and get basic info
+    const tableInfoQuery = `
+      SELECT 
+        COUNT(*) as total_rows,
+        COUNTIF(ipId IS NOT NULL) as rows_with_ipId,
+        COUNTIF(nftMetadata.name IS NOT NULL) as rows_with_name
+      FROM \`storygraph-462415.storygraph.assets_external\`
+    `
 
-    if (lines.length > 0) {
-      try {
-        const firstAsset = JSON.parse(lines[0])
-        console.log("First asset ID:", firstAsset.ipId)
-        console.log("First asset name:", firstAsset.nftMetadata?.name)
-      } catch (error) {
-        console.error("Error parsing first line:", error)
-      }
+    const [infoRows] = await bigquery.query(tableInfoQuery)
+    const info = infoRows[0]
+
+    console.log("Table statistics:")
+    console.log("- Total rows:", info.total_rows)
+    console.log("- Rows with ipId:", info.rows_with_ipId)
+    console.log("- Rows with name:", info.rows_with_name)
+
+    // Get sample data
+    const sampleQuery = `
+      SELECT 
+        ipId,
+        nftMetadata.name as name,
+        nftMetadata.tokenContract as tokenContract,
+        rootIpIds,
+        childrenCount,
+        descendantCount
+      FROM \`storygraph-462415.storygraph.assets_external\`
+      LIMIT 3
+    `
+
+    const [sampleRows] = await bigquery.query(sampleQuery)
+
+    if (sampleRows.length > 0) {
+      console.log("\nSample assets:")
+      sampleRows.forEach((row: any, index: number) => {
+        console.log(`Asset ${index + 1}:`)
+        console.log("- ID:", row.ipId)
+        console.log("- Name:", row.name)
+        console.log("- Token Contract:", row.tokenContract)
+        console.log("- Root IPs:", row.rootIpIds?.length || 0)
+        console.log("- Children Count:", row.childrenCount || 0)
+        console.log("- Descendant Count:", row.descendantCount || 0)
+        console.log("")
+      })
     }
+
+    console.log("BigQuery data verification completed successfully!")
+
+  } catch (error) {
+    console.error("Error verifying BigQuery data:", error)
+    console.error("Make sure:")
+    console.error("1. BigQuery credentials are properly configured")
+    console.error("2. The table 'storygraph-462415.storygraph.assets_external' exists")
+    console.error("3. Your service account has the necessary permissions")
   }
 }

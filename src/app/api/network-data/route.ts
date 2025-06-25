@@ -1,7 +1,19 @@
 import { NextResponse } from "next/server"
-import fs from "fs"
-import path from "path"
+import { BigQuery } from "@google-cloud/bigquery"
 import type { IPAsset } from "@/types"
+
+// Initialize BigQuery client
+const bigquery = new BigQuery({
+  projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+  credentials: {
+    type: process.env.GOOGLE_CLOUD_SERVICE_ACCOUNT_TYPE,
+    project_id: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    private_key_id: process.env.GOOGLE_CLOUD_PRIVATE_KEY_ID,
+    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+    client_id: process.env.GOOGLE_CLOUD_CLIENT_ID,
+  },
+})
 
 interface ProcessedData {
   nodes: Array<{
@@ -32,228 +44,248 @@ interface ProcessedData {
 }
 
 async function processNetworkDataServer(): Promise<ProcessedData> {
-  const filePath = path.join(process.cwd(), "assets.ndjson")
+  try {
+    const query = `
+      SELECT *
+      FROM \`storygraph-462415.storygraph.assets_external\`
+    `
 
-  if (!fs.existsSync(filePath)) {
-    throw new Error("Assets file not found")
-  }
+    const [rows] = await bigquery.query(query)
 
-  const fileContent = await fs.promises.readFile(filePath, "utf-8")
-  const lines = fileContent.split("\n").filter((line) => line.trim() !== "")
+    const assets: IPAsset[] = rows
+      .map((row: any) => {
+        try {
+          return {
+            ...row,
+            rootIpIds: row.rootIpIds || [],
+            childrenCount: row.childrenCount || 0,
+            descendantCount: row.descendantCount || 0,
+            parentCount: row.parentCount || 0,
+            isGroup: row.isGroup || false,
+            nftMetadata: {
+              name: row.nftMetadata?.name || "",
+              chainId: row.nftMetadata?.chainId || "1315",
+              tokenContract: row.nftMetadata?.tokenContract || "",
+              tokenId: row.nftMetadata?.tokenId || "",
+              tokenUri: row.nftMetadata?.tokenUri || "",
+              imageUrl: row.nftMetadata?.imageUrl || "",
+              ...row.nftMetadata,
+            },
+          } as IPAsset
+        } catch (parseError) {
+          console.error("Error parsing asset row:", parseError)
+          return null
+        }
+      })
+      .filter(Boolean) as IPAsset[]
 
-  const assets: IPAsset[] = lines
-    .map((line, index) => {
-      try {
-        return JSON.parse(line)
-      } catch (parseError) {
-        console.error(`Error parsing line ${index + 1}:`, parseError)
-        return null
+    console.log(`Processing ${assets.length} assets for network visualization`)
+
+    // Group assets by token contract
+    const contractGroups = new Map<string, IPAsset[]>()
+    const rootAssets = new Set<string>()
+
+    assets.forEach((asset) => {
+      const contract = asset.nftMetadata?.tokenContract || "unknown"
+      if (!contractGroups.has(contract)) {
+        contractGroups.set(contract, [])
+      }
+      contractGroups.get(contract)!.push(asset)
+
+      // Track root assets (assets with no parents)
+      if ((!asset.rootIpIds || asset.rootIpIds.length === 0) && (!asset.parentCount || asset.parentCount === 0)) {
+        rootAssets.add(asset.ipId)
       }
     })
-    .filter(Boolean) as IPAsset[]
 
-  console.log(`Processing ${assets.length} assets for network visualization`)
+    // Create community mapping
+    const communityMap = new Map<string, number>()
+    let communityId = 0
 
-  // Group assets by token contract
-  const contractGroups = new Map<string, IPAsset[]>()
-  const rootAssets = new Set<string>()
+    contractGroups.forEach((_, contract) => {
+      communityMap.set(contract, communityId++)
+    })
 
-  assets.forEach((asset) => {
-    const contract = asset.nftMetadata?.tokenContract || "unknown"
-    if (!contractGroups.has(contract)) {
-      contractGroups.set(contract, [])
-    }
-    contractGroups.get(contract)!.push(asset)
+    // Color palette for communities
+    const colors = [
+      "#8b5cf6",
+      "#06b6d4",
+      "#10b981",
+      "#f59e0b",
+      "#ef4444",
+      "#ec4899",
+      "#84cc16",
+      "#6366f1",
+      "#f97316",
+      "#14b8a6",
+      "#8b5cf6",
+      "#06b6d4",
+    ]
 
-    // Track root assets (assets with no parents)
-    if ((!asset.rootIpIds || asset.rootIpIds.length === 0) && (!asset.parentCount || asset.parentCount === 0)) {
-      rootAssets.add(asset.ipId)
-    }
-  })
+    const nodes: ProcessedData["nodes"] = []
+    const edges: ProcessedData["edges"] = []
+    const edgeSet = new Set<string>()
 
-  // Create community mapping
-  const communityMap = new Map<string, number>()
-  let communityId = 0
+    // Strategy 1: For large contracts (>100 assets), create a single representative node
+    // Strategy 2: For medium contracts (10-100 assets), show top-level assets only
+    // Strategy 3: For small contracts (<10 assets), show all assets
 
-  contractGroups.forEach((_, contract) => {
-    communityMap.set(contract, communityId++)
-  })
+    contractGroups.forEach((contractAssets, contract) => {
+      const community = communityMap.get(contract) || 0
+      const color = colors[community % colors.length]
 
-  // Color palette for communities
-  const colors = [
-    "#8b5cf6",
-    "#06b6d4",
-    "#10b981",
-    "#f59e0b",
-    "#ef4444",
-    "#ec4899",
-    "#84cc16",
-    "#6366f1",
-    "#f97316",
-    "#14b8a6",
-    "#8b5cf6",
-    "#06b6d4",
-  ]
+      if (contractAssets.length > 100) {
+        // Large contract: Create a single group node
+        const totalDescendants = contractAssets.reduce((sum, asset) => sum + (asset.descendantCount || 0), 0)
+        const totalChildren = contractAssets.reduce((sum, asset) => sum + (asset.childrenCount || 0), 0)
 
-  const nodes: ProcessedData["nodes"] = []
-  const edges: ProcessedData["edges"] = []
-  const edgeSet = new Set<string>()
-
-  // Strategy 1: For large contracts (>100 assets), create a single representative node
-  // Strategy 2: For medium contracts (10-100 assets), show top-level assets only
-  // Strategy 3: For small contracts (<10 assets), show all assets
-
-  contractGroups.forEach((contractAssets, contract) => {
-    const community = communityMap.get(contract) || 0
-    const color = colors[community % colors.length]
-
-    if (contractAssets.length > 100) {
-      // Large contract: Create a single group node
-      const totalDescendants = contractAssets.reduce((sum, asset) => sum + (asset.descendantCount || 0), 0)
-      const totalChildren = contractAssets.reduce((sum, asset) => sum + (asset.childrenCount || 0), 0)
-
-      nodes.push({
-        id: `group_${contract}`,
-        label: getContractName(contract),
-        size: Math.min(100, 40 + Math.log(contractAssets.length) * 10),
-        community,
-        color,
-        descendantCount: totalDescendants,
-        childrenCount: totalChildren,
-        isGroup: true,
-        tokenContract: contract,
-        assetCount: contractAssets.length,
-      })
-    } else if (contractAssets.length > 10) {
-      // Medium contract: Show only root assets and highly connected assets
-      const importantAssets = contractAssets
-        .filter(
-          (asset) => rootAssets.has(asset.ipId) || (asset.descendantCount || 0) > 5 || (asset.childrenCount || 0) > 3,
-        )
-        .slice(0, 20) // Limit to 20 most important assets
-
-      importantAssets.forEach((asset) => {
         nodes.push({
-          id: asset.ipId,
-          label: asset.nftMetadata?.name?.substring(0, 20) || asset.ipId.substring(0, 8),
-          size: Math.max(20, Math.min(60, 20 + (asset.descendantCount || 0) * 2)),
+          id: `group_${contract}`,
+          label: getContractName(contract),
+          size: Math.min(100, 40 + Math.log(contractAssets.length) * 10),
           community,
           color,
-          descendantCount: asset.descendantCount || 0,
-          childrenCount: asset.childrenCount || 0,
-          isGroup: false,
+          descendantCount: totalDescendants,
+          childrenCount: totalChildren,
+          isGroup: true,
           tokenContract: contract,
+          assetCount: contractAssets.length,
         })
-      })
+      } else if (contractAssets.length > 10) {
+        // Medium contract: Show only root assets and highly connected assets
+        const importantAssets = contractAssets
+          .filter(
+            (asset) => rootAssets.has(asset.ipId) || (asset.descendantCount || 0) > 5 || (asset.childrenCount || 0) > 3,
+          )
+          .slice(0, 20) // Limit to 20 most important assets
 
-      // Create edges between important assets
-      importantAssets.forEach((asset) => {
-        if (asset.rootIpIds) {
-          asset.rootIpIds.forEach((rootId) => {
-            if (importantAssets.some((a) => a.ipId === rootId)) {
-              const edgeId = `${rootId}-${asset.ipId}`
-              if (!edgeSet.has(edgeId)) {
-                edges.push({
-                  id: edgeId,
-                  source: rootId,
-                  target: asset.ipId,
-                  weight: 2,
-                  type: "parent-child",
-                })
-                edgeSet.add(edgeId)
-              }
-            }
+        importantAssets.forEach((asset) => {
+          nodes.push({
+            id: asset.ipId,
+            label: asset.nftMetadata?.name?.substring(0, 20) || asset.ipId.substring(0, 8),
+            size: Math.max(20, Math.min(60, 20 + (asset.descendantCount || 0) * 2)),
+            community,
+            color,
+            descendantCount: asset.descendantCount || 0,
+            childrenCount: asset.childrenCount || 0,
+            isGroup: false,
+            tokenContract: contract,
           })
-        }
-      })
-    } else {
-      // Small contract: Show all assets
-      contractAssets.forEach((asset) => {
-        nodes.push({
-          id: asset.ipId,
-          label: asset.nftMetadata?.name?.substring(0, 20) || asset.ipId.substring(0, 8),
-          size: Math.max(15, Math.min(40, 15 + (asset.descendantCount || 0) * 3)),
-          community,
-          color,
-          descendantCount: asset.descendantCount || 0,
-          childrenCount: asset.childrenCount || 0,
-          isGroup: false,
-          tokenContract: contract,
         })
-      })
 
-      // Create edges for small contracts
-      contractAssets.forEach((asset) => {
-        if (asset.rootIpIds) {
-          asset.rootIpIds.forEach((rootId) => {
-            if (contractAssets.some((a) => a.ipId === rootId)) {
-              const edgeId = `${rootId}-${asset.ipId}`
-              if (!edgeSet.has(edgeId)) {
-                edges.push({
-                  id: edgeId,
-                  source: rootId,
-                  target: asset.ipId,
-                  weight: 1,
-                  type: "parent-child",
-                })
-                edgeSet.add(edgeId)
+        // Create edges between important assets
+        importantAssets.forEach((asset) => {
+          if (asset.rootIpIds) {
+            asset.rootIpIds.forEach((rootId) => {
+              if (importantAssets.some((a) => a.ipId === rootId)) {
+                const edgeId = `${rootId}-${asset.ipId}`
+                if (!edgeSet.has(edgeId)) {
+                  edges.push({
+                    id: edgeId,
+                    source: rootId,
+                    target: asset.ipId,
+                    weight: 2,
+                    type: "parent-child",
+                  })
+                  edgeSet.add(edgeId)
+                }
               }
-            }
-          })
-        }
-      })
-    }
-  })
-
-  // Create inter-contract connections for related assets
-  const maxInterConnections = 50 // Limit inter-contract connections
-  let interConnectionCount = 0
-
-  assets.forEach((asset) => {
-    if (interConnectionCount >= maxInterConnections) return
-
-    if (asset.rootIpIds) {
-      asset.rootIpIds.forEach((rootId) => {
-        const rootAsset = assets.find((a) => a.ipId === rootId)
-        if (
-          rootAsset &&
-          rootAsset.nftMetadata?.tokenContract !== asset.nftMetadata?.tokenContract &&
-          nodes.some((n) => n.id === rootId || n.id === `group_${rootAsset.nftMetadata?.tokenContract}`) &&
-          nodes.some((n) => n.id === asset.ipId || n.id === `group_${asset.nftMetadata?.tokenContract}`)
-        ) {
-          const sourceId = nodes.find((n) => n.id === rootId) ? rootId : `group_${rootAsset.nftMetadata?.tokenContract}`
-          const targetId = nodes.find((n) => n.id === asset.ipId)
-            ? asset.ipId
-            : `group_${asset.nftMetadata?.tokenContract}`
-
-          const edgeId = `${sourceId}-${targetId}`
-          if (!edgeSet.has(edgeId)) {
-            edges.push({
-              id: edgeId,
-              source: sourceId,
-              target: targetId,
-              weight: 3,
-              type: "cross-contract",
             })
-            edgeSet.add(edgeId)
-            interConnectionCount++
           }
-        }
-      })
+        })
+      } else {
+        // Small contract: Show all assets
+        contractAssets.forEach((asset) => {
+          nodes.push({
+            id: asset.ipId,
+            label: asset.nftMetadata?.name?.substring(0, 20) || asset.ipId.substring(0, 8),
+            size: Math.max(15, Math.min(40, 15 + (asset.descendantCount || 0) * 3)),
+            community,
+            color,
+            descendantCount: asset.descendantCount || 0,
+            childrenCount: asset.childrenCount || 0,
+            isGroup: false,
+            tokenContract: contract,
+          })
+        })
+
+        // Create edges for small contracts
+        contractAssets.forEach((asset) => {
+          if (asset.rootIpIds) {
+            asset.rootIpIds.forEach((rootId) => {
+              if (contractAssets.some((a) => a.ipId === rootId)) {
+                const edgeId = `${rootId}-${asset.ipId}`
+                if (!edgeSet.has(edgeId)) {
+                  edges.push({
+                    id: edgeId,
+                    source: rootId,
+                    target: asset.ipId,
+                    weight: 1,
+                    type: "parent-child",
+                  })
+                  edgeSet.add(edgeId)
+                }
+              }
+            })
+          }
+        })
+      }
+    })
+
+    // Create inter-contract connections for related assets
+    const maxInterConnections = 50 // Limit inter-contract connections
+    let interConnectionCount = 0
+
+    assets.forEach((asset) => {
+      if (interConnectionCount >= maxInterConnections) return
+
+      if (asset.rootIpIds) {
+        asset.rootIpIds.forEach((rootId) => {
+          const rootAsset = assets.find((a) => a.ipId === rootId)
+          if (
+            rootAsset &&
+            rootAsset.nftMetadata?.tokenContract !== asset.nftMetadata?.tokenContract &&
+            nodes.some((n) => n.id === rootId || n.id === `group_${rootAsset.nftMetadata?.tokenContract}`) &&
+            nodes.some((n) => n.id === asset.ipId || n.id === `group_${asset.nftMetadata?.tokenContract}`)
+          ) {
+            const sourceId = nodes.find((n) => n.id === rootId) ? rootId : `group_${rootAsset.nftMetadata?.tokenContract}`
+            const targetId = nodes.find((n) => n.id === asset.ipId)
+              ? asset.ipId
+              : `group_${asset.nftMetadata?.tokenContract}`
+
+            const edgeId = `${sourceId}-${targetId}`
+            if (!edgeSet.has(edgeId)) {
+              edges.push({
+                id: edgeId,
+                source: sourceId,
+                target: targetId,
+                weight: 3,
+                type: "cross-contract",
+              })
+              edgeSet.add(edgeId)
+              interConnectionCount++
+            }
+          }
+        })
+      }
+    })
+
+    const stats = {
+      totalAssets: assets.length,
+      totalContracts: contractGroups.size,
+      totalCommunities: communityId,
+      largestCommunity: Math.max(...Array.from(contractGroups.values()).map((group) => group.length)),
     }
-  })
 
-  const stats = {
-    totalAssets: assets.length,
-    totalContracts: contractGroups.size,
-    totalCommunities: communityId,
-    largestCommunity: Math.max(...Array.from(contractGroups.values()).map((group) => group.length)),
+    console.log(`Processed network: ${nodes.length} nodes, ${edges.length} edges`)
+    console.log(`Stats:`, stats)
+
+    return { nodes, edges, stats }
+
+  } catch (error) {
+    console.error("Error fetching assets from BigQuery:", error)
+    throw new Error("Failed to fetch assets from BigQuery")
   }
-
-  console.log(`Processed network: ${nodes.length} nodes, ${edges.length} edges`)
-  console.log(`Stats:`, stats)
-
-  return { nodes, edges, stats }
 }
 
 function getContractName(address: string): string {
@@ -288,3 +320,5 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to process network data" }, { status: 500 })
   }
 }
+
+export const maxDuration = 60

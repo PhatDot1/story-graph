@@ -1,7 +1,19 @@
 import { NextResponse } from "next/server"
-import fs from "fs"
-import path from "path"
+import { BigQuery } from "@google-cloud/bigquery"
 import type { IPAsset } from "@/types"
+
+// Initialize BigQuery client
+const bigquery = new BigQuery({
+  projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+  credentials: {
+    type: process.env.GOOGLE_CLOUD_SERVICE_ACCOUNT_TYPE,
+    project_id: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    private_key_id: process.env.GOOGLE_CLOUD_PRIVATE_KEY_ID,
+    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+    client_id: process.env.GOOGLE_CLOUD_CLIENT_ID,
+  },
+})
 
 interface CommunityViewData {
   nodes: Array<{
@@ -44,203 +56,223 @@ interface CommunityViewData {
 }
 
 async function processCommunityViewData(): Promise<CommunityViewData> {
-  const filePath = path.join(process.cwd(), "assets.ndjson")
+  try {
+    const query = `
+      SELECT *
+      FROM \`storygraph-462415.storygraph.assets_external\`
+    `
 
-  if (!fs.existsSync(filePath)) {
-    throw new Error("Assets file not found")
-  }
+    const [rows] = await bigquery.query(query)
 
-  const fileContent = await fs.promises.readFile(filePath, "utf-8")
-  const lines = fileContent.split("\n").filter((line: string) => line.trim() !== "")
+    const assets: IPAsset[] = rows
+      .map((row: any) => {
+        try {
+          return {
+            ...row,
+            rootIpIds: row.rootIpIds || [],
+            childrenCount: row.childrenCount || 0,
+            descendantCount: row.descendantCount || 0,
+            parentCount: row.parentCount || 0,
+            isGroup: row.isGroup || false,
+            nftMetadata: {
+              name: row.nftMetadata?.name || "",
+              chainId: row.nftMetadata?.chainId || "1315",
+              tokenContract: row.nftMetadata?.tokenContract || "",
+              tokenId: row.nftMetadata?.tokenId || "",
+              tokenUri: row.nftMetadata?.tokenUri || "",
+              imageUrl: row.nftMetadata?.imageUrl || "",
+              ...row.nftMetadata,
+            },
+          } as IPAsset
+        } catch (parseError) {
+          console.error(`Error parsing asset row:`, parseError)
+          return null
+        }
+      })
+      .filter(Boolean) as IPAsset[]
 
-  const assets: IPAsset[] = lines
-    .map((line: string, index: number) => {
-      try {
-        return JSON.parse(line)
-      } catch (parseError) {
-        console.error(`Error parsing line ${index + 1}:`, parseError)
-        return null
+    console.log(`Processing ${assets.length} assets for community view`)
+
+    // Group assets by token contract (communities)
+    const contractGroups = new Map<string, IPAsset[]>()
+
+    assets.forEach((asset) => {
+      const contract = asset.nftMetadata?.tokenContract || "unknown"
+      if (!contractGroups.has(contract)) {
+        contractGroups.set(contract, [])
+      }
+      contractGroups.get(contract)!.push(asset)
+    })
+
+    // Filter communities (minimum 5 assets)
+    const MIN_COMMUNITY_SIZE = 5
+    const qualifyingCommunities = Array.from(contractGroups.entries()).filter(
+      ([_, assets]) => assets.length >= MIN_COMMUNITY_SIZE,
+    )
+
+    console.log(`Qualifying communities: ${qualifyingCommunities.length} out of ${contractGroups.size}`)
+
+    // Community breakdown
+    const communityBreakdown = { large: 0, medium: 0, small: 0, tiny: 0 }
+    qualifyingCommunities.forEach(([_, assets]) => {
+      const size = assets.length
+      if (size >= 100) communityBreakdown.large++
+      else if (size >= 20) communityBreakdown.medium++
+      else if (size >= 10) communityBreakdown.small++
+      else communityBreakdown.tiny++
+    })
+
+    // Color palette
+    const colors = [
+      "#8b5cf6",
+      "#06b6d4",
+      "#10b981",
+      "#f59e0b",
+      "#ef4444",
+      "#ec4899",
+      "#84cc16",
+      "#6366f1",
+      "#f97316",
+      "#14b8a6",
+      "#a855f7",
+      "#0ea5e9",
+      "#22c55e",
+      "#eab308",
+      "#f43f5e",
+      "#d946ef",
+      "#65a30d",
+      "#3b82f6",
+      "#8b5cf6",
+      "#06b6d4",
+      "#10b981",
+      "#f59e0b",
+      "#ef4444",
+      "#ec4899",
+    ]
+
+    // Create community nodes
+    const nodes: CommunityViewData["nodes"] = []
+    const communityMap = new Map<string, number>()
+
+    qualifyingCommunities.forEach(([contract, contractAssets], index) => {
+      const assetCount = contractAssets.length
+
+      // Calculate size (logarithmic scale for better visualization)
+      const minSize = 30
+      const maxSize = 120
+      const size = Math.min(maxSize, minSize + Math.log(assetCount) * 15)
+
+      // Calculate brightness (0.4 to 1.0 based on asset count)
+      const maxAssets = Math.max(...qualifyingCommunities.map(([_, assets]) => assets.length))
+      const brightness = 0.4 + (assetCount / maxAssets) * 0.6
+
+      // Calculate connections within community
+      let totalConnections = 0
+      contractAssets.forEach((asset) => {
+        // Count connections to other assets in the same community
+        const connections = asset.rootIpIds.filter((rootId) => contractAssets.some((a) => a.ipId === rootId)).length
+        totalConnections += connections
+      })
+
+      const avgConnections = contractAssets.length > 0 ? totalConnections / contractAssets.length : 0
+      const hasConnections = totalConnections > 0
+
+      // Get top assets by descendant count
+      const topAssets = contractAssets
+        .sort((a, b) => (b.descendantCount || 0) - (a.descendantCount || 0))
+        .slice(0, 5)
+        .map((asset) => ({
+          name: asset.nftMetadata?.name || "Unnamed Asset",
+          ipId: asset.ipId,
+          descendantCount: asset.descendantCount || 0,
+        }))
+
+      communityMap.set(contract, index)
+
+      nodes.push({
+        id: `community_${index}`,
+        label: getContractName(contract),
+        size,
+        assetCount,
+        color: colors[index % colors.length],
+        brightness,
+        tokenContract: contract,
+        hasConnections,
+        avgConnections,
+        topAssets,
+      })
+    })
+
+    // Create edges between communities based on cross-community connections
+    const edges: CommunityViewData["edges"] = []
+    const edgeMap = new Map<string, number>()
+
+    assets.forEach((asset) => {
+      const assetContract = asset.nftMetadata?.tokenContract || "unknown"
+      const assetCommunityIndex = communityMap.get(assetContract)
+
+      if (assetCommunityIndex === undefined) return
+
+      if (asset.rootIpIds) {
+        asset.rootIpIds.forEach((rootId) => {
+          const rootAsset = assets.find((a) => a.ipId === rootId)
+          if (!rootAsset) return
+
+          const rootContract = rootAsset.nftMetadata?.tokenContract || "unknown"
+          const rootCommunityIndex = communityMap.get(rootContract)
+
+          if (rootCommunityIndex === undefined || rootCommunityIndex === assetCommunityIndex) return
+
+          // Cross-community connection found
+          const sourceId = `community_${rootCommunityIndex}`
+          const targetId = `community_${assetCommunityIndex}`
+          const edgeKey = `${Math.min(rootCommunityIndex, assetCommunityIndex)}-${Math.max(rootCommunityIndex, assetCommunityIndex)}`
+
+          if (!edgeMap.has(edgeKey)) {
+            edgeMap.set(edgeKey, 0)
+          }
+          edgeMap.set(edgeKey, edgeMap.get(edgeKey)! + 1)
+        })
       }
     })
-    .filter(Boolean) as IPAsset[]
 
-  console.log(`Processing ${assets.length} assets for community view`)
+    // Convert edge map to edges array
+    edgeMap.forEach((connectionCount, edgeKey) => {
+      const [sourceIndex, targetIndex] = edgeKey.split("-").map(Number)
+      const sourceId = `community_${sourceIndex}`
+      const targetId = `community_${targetIndex}`
 
-  // Group assets by token contract (communities)
-  const contractGroups = new Map<string, IPAsset[]>()
+      // Weight based on connection count (logarithmic scale)
+      const weight = Math.min(10, 2 + Math.log(connectionCount) * 2)
 
-  assets.forEach((asset) => {
-    const contract = asset.nftMetadata?.tokenContract || "unknown"
-    if (!contractGroups.has(contract)) {
-      contractGroups.set(contract, [])
-    }
-    contractGroups.get(contract)!.push(asset)
-  })
-
-  // Filter communities (minimum 5 assets)
-  const MIN_COMMUNITY_SIZE = 5
-  const qualifyingCommunities = Array.from(contractGroups.entries()).filter(
-    ([_, assets]) => assets.length >= MIN_COMMUNITY_SIZE,
-  )
-
-  console.log(`Qualifying communities: ${qualifyingCommunities.length} out of ${contractGroups.size}`)
-
-  // Community breakdown
-  const communityBreakdown = { large: 0, medium: 0, small: 0, tiny: 0 }
-  qualifyingCommunities.forEach(([_, assets]) => {
-    const size = assets.length
-    if (size >= 100) communityBreakdown.large++
-    else if (size >= 20) communityBreakdown.medium++
-    else if (size >= 10) communityBreakdown.small++
-    else communityBreakdown.tiny++
-  })
-
-  // Color palette
-  const colors = [
-    "#8b5cf6",
-    "#06b6d4",
-    "#10b981",
-    "#f59e0b",
-    "#ef4444",
-    "#ec4899",
-    "#84cc16",
-    "#6366f1",
-    "#f97316",
-    "#14b8a6",
-    "#a855f7",
-    "#0ea5e9",
-    "#22c55e",
-    "#eab308",
-    "#f43f5e",
-    "#d946ef",
-    "#65a30d",
-    "#3b82f6",
-    "#8b5cf6",
-    "#06b6d4",
-    "#10b981",
-    "#f59e0b",
-    "#ef4444",
-    "#ec4899",
-  ]
-
-  // Create community nodes
-  const nodes: CommunityViewData["nodes"] = []
-  const communityMap = new Map<string, number>()
-
-  qualifyingCommunities.forEach(([contract, contractAssets], index) => {
-    const assetCount = contractAssets.length
-
-    // Calculate size (logarithmic scale for better visualization)
-    const minSize = 30
-    const maxSize = 120
-    const size = Math.min(maxSize, minSize + Math.log(assetCount) * 15)
-
-    // Calculate brightness (0.4 to 1.0 based on asset count)
-    const maxAssets = Math.max(...qualifyingCommunities.map(([_, assets]) => assets.length))
-    const brightness = 0.4 + (assetCount / maxAssets) * 0.6
-
-    // Calculate connections within community
-    let totalConnections = 0
-    contractAssets.forEach((asset) => {
-      // Count connections to other assets in the same community
-      const connections = asset.rootIpIds.filter((rootId) => contractAssets.some((a) => a.ipId === rootId)).length
-      totalConnections += connections
-    })
-
-    const avgConnections = contractAssets.length > 0 ? totalConnections / contractAssets.length : 0
-    const hasConnections = totalConnections > 0
-
-    // Get top assets by descendant count
-    const topAssets = contractAssets
-      .sort((a, b) => (b.descendantCount || 0) - (a.descendantCount || 0))
-      .slice(0, 5)
-      .map((asset) => ({
-        name: asset.nftMetadata?.name || "Unnamed Asset",
-        ipId: asset.ipId,
-        descendantCount: asset.descendantCount || 0,
-      }))
-
-    communityMap.set(contract, index)
-
-    nodes.push({
-      id: `community_${index}`,
-      label: getContractName(contract),
-      size,
-      assetCount,
-      color: colors[index % colors.length],
-      brightness,
-      tokenContract: contract,
-      hasConnections,
-      avgConnections,
-      topAssets,
-    })
-  })
-
-  // Create edges between communities based on cross-community connections
-  const edges: CommunityViewData["edges"] = []
-  const edgeMap = new Map<string, number>()
-
-  assets.forEach((asset) => {
-    const assetContract = asset.nftMetadata?.tokenContract || "unknown"
-    const assetCommunityIndex = communityMap.get(assetContract)
-
-    if (assetCommunityIndex === undefined) return
-
-    if (asset.rootIpIds) {
-      asset.rootIpIds.forEach((rootId) => {
-        const rootAsset = assets.find((a) => a.ipId === rootId)
-        if (!rootAsset) return
-
-        const rootContract = rootAsset.nftMetadata?.tokenContract || "unknown"
-        const rootCommunityIndex = communityMap.get(rootContract)
-
-        if (rootCommunityIndex === undefined || rootCommunityIndex === assetCommunityIndex) return
-
-        // Cross-community connection found
-        const sourceId = `community_${rootCommunityIndex}`
-        const targetId = `community_${assetCommunityIndex}`
-        const edgeKey = `${Math.min(rootCommunityIndex, assetCommunityIndex)}-${Math.max(rootCommunityIndex, assetCommunityIndex)}`
-
-        if (!edgeMap.has(edgeKey)) {
-          edgeMap.set(edgeKey, 0)
-        }
-        edgeMap.set(edgeKey, edgeMap.get(edgeKey)! + 1)
+      edges.push({
+        id: `${sourceId}-${targetId}`,
+        source: sourceId,
+        target: targetId,
+        weight,
+        connectionCount,
+        type: "cross-community",
       })
-    }
-  })
-
-  // Convert edge map to edges array
-  edgeMap.forEach((connectionCount, edgeKey) => {
-    const [sourceIndex, targetIndex] = edgeKey.split("-").map(Number)
-    const sourceId = `community_${sourceIndex}`
-    const targetId = `community_${targetIndex}`
-
-    // Weight based on connection count (logarithmic scale)
-    const weight = Math.min(10, 2 + Math.log(connectionCount) * 2)
-
-    edges.push({
-      id: `${sourceId}-${targetId}`,
-      source: sourceId,
-      target: targetId,
-      weight,
-      connectionCount,
-      type: "cross-community",
     })
-  })
 
-  const stats = {
-    totalAssets: assets.length,
-    totalContracts: contractGroups.size,
-    visibleCommunities: qualifyingCommunities.length,
-    totalConnections: edges.length,
-    largestCommunity: Math.max(...qualifyingCommunities.map(([_, assets]) => assets.length)),
-    communityBreakdown,
+    const stats = {
+      totalAssets: assets.length,
+      totalContracts: contractGroups.size,
+      visibleCommunities: qualifyingCommunities.length,
+      totalConnections: edges.length,
+      largestCommunity: Math.max(...qualifyingCommunities.map(([_, assets]) => assets.length)),
+      communityBreakdown,
+    }
+
+    console.log(`Community view: ${nodes.length} communities, ${edges.length} connections`)
+    console.log(`Stats:`, stats)
+
+    return { nodes, edges, stats }
+
+  } catch (error) {
+    console.error("Error fetching assets from BigQuery:", error)
+    throw new Error("Failed to fetch assets from BigQuery")
   }
-
-  console.log(`Community view: ${nodes.length} communities, ${edges.length} connections`)
-  console.log(`Stats:`, stats)
-
-  return { nodes, edges, stats }
 }
 
 function getContractName(address: string): string {
@@ -275,3 +307,5 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to process community view data" }, { status: 500 })
   }
 }
+
+export const maxDuration = 60

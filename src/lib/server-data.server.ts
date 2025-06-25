@@ -1,43 +1,59 @@
-import fs from "fs"
-import path from "path"
+import { BigQuery } from "@google-cloud/bigquery"
 import type { IPAsset } from "@/types"
 
-// Function to read assets from the NDJSON file (server-side only)
+// Initialize BigQuery client
+const bigquery = new BigQuery({
+  projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+  credentials: {
+    type: process.env.GOOGLE_CLOUD_SERVICE_ACCOUNT_TYPE,
+    project_id: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    private_key_id: process.env.GOOGLE_CLOUD_PRIVATE_KEY_ID,
+    private_key: process.env.GOOGLE_CLOUD_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
+    client_id: process.env.GOOGLE_CLOUD_CLIENT_ID,
+  },
+})
+
+// Function to read assets from BigQuery (server-side only)
 export async function readAssets(): Promise<IPAsset[]> {
-  const filePath = path.join(process.cwd(), "assets.ndjson")
-  if (!fs.existsSync(filePath)) return []
+  try {
+    const query = `
+      SELECT *
+      FROM \`storygraph-462415.storygraph.assets_external\`
+    `
 
-  const fileContent = await fs.promises.readFile(filePath, "utf-8")
-  const lines = fileContent
-    .split("\n")
-    .filter((line) => line.trim() !== "")
+    const [rows] = await bigquery.query(query)
 
-  const assets = lines
-    .map((line) => {
-      try {
-        const parsed = JSON.parse(line)
-        return {
-          ...parsed,
-          rootIpIds: parsed.rootIpIds || [],
-          childrenCount: parsed.childrenCount || 0,
-          descendantCount: parsed.descendantCount || 0,
-          parentCount: parsed.parentCount || 0,
-          isGroup: parsed.isGroup || false,
-          nftMetadata: {
-            name: parsed.nftMetadata?.name || "",
-            chainId: parsed.nftMetadata?.chainId || "1315",
-            tokenContract: parsed.nftMetadata?.tokenContract || "",
-            tokenId: parsed.nftMetadata?.tokenId || "",
-            tokenUri: parsed.nftMetadata?.tokenUri || "",
-            imageUrl: parsed.nftMetadata?.imageUrl || "",
-            ...parsed.nftMetadata,
-          },
-        } as IPAsset
-      } catch {
-        return null
-      }
-    })
-    .filter(Boolean) as IPAsset[]
+    const assets = rows
+      .map((row: any) => {
+        try {
+          return {
+            ...row,
+            rootIpIds: row.rootIpIds || [],
+            childrenCount: row.childrenCount || 0,
+            descendantCount: row.descendantCount || 0,
+            parentCount: row.parentCount || 0,
+            isGroup: row.isGroup || false,
+            nftMetadata: {
+              name: row.nftMetadata?.name || "",
+              chainId: row.nftMetadata?.chainId || "1315",
+              tokenContract: row.nftMetadata?.tokenContract || "",
+              tokenId: row.nftMetadata?.tokenId || "",
+              tokenUri: row.nftMetadata?.tokenUri || "",
+              imageUrl: row.nftMetadata?.imageUrl || "",
+              ...row.nftMetadata,
+            },
+          } as IPAsset
+        } catch (error) {
+          console.error("Error parsing asset row:", error)
+          return null
+        }
+      })
+      .filter(Boolean) as IPAsset[]
 
-  return assets
+    return assets
+  } catch (error) {
+    console.error("Error fetching assets from BigQuery:", error)
+    return []
+  }
 }
